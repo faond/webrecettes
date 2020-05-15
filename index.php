@@ -20,6 +20,7 @@
               <a id="plat" href="#"><li>Nos plats</li></a>
               <a id= "dessert" href="#"><li>Nos desserts</li></a>
               <a id="boisson" href="#"><li>Nos boissons</li></a>
+              <a id="mesRecettes" href="pages/mesRecettes.php"><li>Mes recettes</li></a>
             </ul>
           </nav>
           </div>

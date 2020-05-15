@@ -9,6 +9,12 @@ header{
   /* background-image: url('../api/images/slider/mojito.jpg'); */
 }
 
+
+h1{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
 .main_container{
   display: flex;
   flex-direction: column;
@@ -163,6 +169,58 @@ a:hover:after {
 .slider.fadeBackground{
   animation: fadeBackground 10s ease-in-out;
 }
+
+
+/**************************************page mes recettes*******************************/
+.recipe_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.liste_recette{
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+}
+
+.recette{
+  text-decoration: none;
+  list-style: none;
+  transition: 0.2s;
+  margin-top: 2%;
+}
+
+.recette:active{
+  transform: scale(0.9);
+}
+
+.recette:after {
+  content: "";
+  display: block;
+  height: 2px; /*epaisseur du soulignement*/
+  left: 50%;
+  position: relative;
+  background: black;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+  margin-top: 1%;
+}
+
+.recette:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+.button{
+  display: none;
+}
+
+.button.up{
+  display: block;
+}
+
+
 /***************Animation********************/
 @keyframes fadeIn {
   0%{
