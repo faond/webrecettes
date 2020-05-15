@@ -47,7 +47,7 @@
 
        <input id="bouton_recette"  type="button" name="type_recette" value="Voir les recettes">
      </form>
-
+      <div id="section_recette"></div>
 
 
 
