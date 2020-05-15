@@ -7,7 +7,7 @@ const filtre = (type) => {
 	params.nomRecette = document.getElementById('nomRecette').value;
 	params.budget = document.getElementById('budget').value;
 
-
+//test git
 	let url = new URL("api/requetes.php", window.location.href);
 	url.search = new URLSearchParams(params);
 	fetch(url, {
