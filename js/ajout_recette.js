@@ -219,3 +219,23 @@ var yyyy = today.getFullYear();
 today = dd+'-'+mm+'-'+yyyy;
 document.getElementById("date").setAttribute("min", today);
 document.getElementById("date").setAttribute("value", today);
+
+
+
+
+
+
+
+
+/*
+
+
+fetch("./api/movies/search.php", {
+  method : 'POST',
+  body: JSON.stringify(params)
+
+})
+  .then( response => response.json() )
+  .then( response => {
+
+*/
