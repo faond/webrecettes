@@ -28,10 +28,11 @@ if ($method == 'get') { //on regarde si la méthode est bien en GET
 //$type = $data['type'];
 //var_dump($data);
 
-$sql = "SELECT projets2_recette.intitule, projets2_type.typeRecette,  
-        projets2_recette.typeCout, projets2_etape.description,  projets2_etape.numEtape
+$sql = "SELECT projets2_recette.intitule, projets2_type.typeRecette,   projets2_recette.resume,
+        projets2_recette.typeCout, projets2_etape.description,  projets2_etape.numEtape, projets2_photo.cheminPhoto
 FROM projets2_recette JOIN projets2_type ON projets2_recette.id_type = projets2_type.id_type 
                       JOIN projets2_etape ON projets2_etape.id_recette = projets2_recette.id_recette
+                      JOIN projets2_photo ON projets2_photo.id_recette = projets2_recette.id_recette
                       WHERE projets2_type.typeRecette LIKE :type
                       AND projets2_recette.typeCout LIKE :budget
                       AND projets2_recette.intitule LIKE :nomRecette"; 
@@ -39,7 +40,6 @@ FROM projets2_recette JOIN projets2_type ON projets2_recette.id_type = projets2_
 $response[':type']='%'; 
 $response[':nomRecette']='%'; 
 $response[':budget']='%'; 
-
 
 if($type != NULL){
   $response[':type'] = $type; 
