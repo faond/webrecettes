@@ -11,13 +11,11 @@ Document.prototype.ready = callback => {
 
 // on va créer un slider
 document.ready( () => {
-	console.log("coucou"); 
 	let url = new URL("api/slider.php", window.location.href);
 	fetch(url, {
 		method: 'GET'
 	}).then( response => response.json() )
 		.then( data => {
-				console.log("coucou2");
 				let background = []; //On créer un tableau qui va contenir les images
 				let i = 0;
 				data.forEach( element => {
@@ -25,7 +23,7 @@ document.ready( () => {
 					i++;
 				});
 				function changeImage(image) {
-					document.querySelector( ".slider" ).style.backgroundImage = 'url(api/images/slider/'+image+')';
+					document.querySelector( ".slider" ).style.backgroundImage = 'url(api/images/'+image+')';
 				}
 
 				setInterval(function() {

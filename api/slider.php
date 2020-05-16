@@ -9,7 +9,7 @@ $method=strtolower($_SERVER['REQUEST_METHOD']); //On recupère la méthode
 
 if ($method == 'get') { //on regarde si la méthode est bien en GET
 
-$sql = "SELECT cheminPhoto FROM projets2_photo";
+$sql = "SELECT cheminPhoto FROM projets2_photo WHERE projets2_photo.slider = 1";
 
 $resultats = $connexion->query($sql);
 

@@ -162,7 +162,7 @@ a:hover:after {
 .slider{
   z-index: -1;
   height: 80vh;
-  background-image: url('../api/images/slider/mojito.jpg');
+  background-image: url('../api/images/mojito.jpg');
   opacity: 1;
 }
 
