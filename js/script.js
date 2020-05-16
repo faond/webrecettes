@@ -1,3 +1,38 @@
+const affichage_etapes = (data, choix = 0) => {
+	let div_recette = document.getElementById('section_recette');
+	div_recette.innerHTML= "";
+	for (let i=0; i<data.length; i++){
+		let message;
+		let paragraphe = document.createElement("p");
+		paragraphe.classList.add("div-recette"); 
+		let image = document.createElement('div'); 
+		image.classList.add("image-recette"); 
+		cheminPhoto = "api/images/slider/"+data[i].cheminPhoto;
+		image.style.backgroundImage = 'url(api/images/slider/'+data[i].cheminPhoto+')';
+
+		
+		//image = "<img src='"+cheminPhoto+"' alt='mojito' width='250'/>";
+		message = "<h1 id='titre-recette'>"+data[i].intitule + "</h1><h2 id='type-recette'>"
+			+ data[i].typeRecette + "</h2><h2 id='description-recette'>"+data[i].resume+"</h2><br/>";
+		
+		
+		if(choix ==1){
+			message += " - " + data[i].description + "<br/>";
+		}		
+		i++;
+
+		while(data[i].numEtape != 1 && i<data.length-1){
+			if(choix == 1){
+				message += " - " + data[i].description + "<br/>";
+			}			
+			i++;
+		}
+		paragraphe.innerHTML = message;
+		paragraphe.appendChild(image); 
+		div_recette.appendChild(paragraphe);
+	}	
+}
+
 const filtre = (type) => {
 	event.preventDefault();
 	console.log("Clic");
@@ -7,7 +42,6 @@ const filtre = (type) => {
 	params.nomRecette = document.getElementById('nomRecette').value;
 	params.budget = document.getElementById('budget').value;
 
-//test git
 	let url = new URL("api/requetes.php", window.location.href);
 	url.search = new URLSearchParams(params);
 	fetch(url, {
@@ -15,28 +49,15 @@ const filtre = (type) => {
 	}).then(response => response.json())
 	.then( data => {
 		console.log(data);
-		let div_recette = document.getElementById('section_recette');
-		div_recette.innerHTML= "";
-
-		for (let i=0; i<data.length; i++){
-				let message;
-				let paragraphe = document.createElement("p");
-				message = "Voici la recette : " + data[i].intitule + ", de type : " + data[i].typeRecette + "<br/>";
-				message += " - " + data[i].description + "<br/>";
-				i++;
-
-				while(data[i].numEtape != 1 && i<data.length-1){
-					message += " - " + data[i].description + "<br/>";
-					i++;
-				}
-
-				paragraphe.innerHTML = message;
-				div_recette.appendChild(paragraphe);
-		}
-
+		affichage_etapes(data); 
 	});
   }
 
+  
+
+document.ready(() => {
+	filtre(document.getElementById('type').value);
+})
 
 document.getElementById('entree').onclick = event =>{
 	filtre("Entrée");
