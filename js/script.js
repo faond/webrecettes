@@ -1,18 +1,19 @@
 const affichage_etapes = (data, choix = 0) => {
 	let div_recette = document.getElementById('section_recette');
 	div_recette.innerHTML= "";
-	for (let i=0; i<data.length; i++){
+	for (let i=0; i<data.length-1; i++){ //J'ai rajouté un -1 pour enlever un message d'erreur. Why ? idk
 		let message;
-		let paragraphe = document.createElement("p");
-		paragraphe.classList.add("div-recette"); 
+		let a = document.createElement("a");
+		a.classList.add("div-recette"); 
+		id = data[i].intitule; 
+		a.href = "pages/pageRecette.php?id=" + id;
+		
 		let image = document.createElement('div'); 
 		image.classList.add("image-recette"); 
-		cheminPhoto = "api/images/slider/"+data[i].cheminPhoto;
-		image.style.backgroundImage = 'url(api/images/slider/'+data[i].cheminPhoto+')';
+		image.style.backgroundImage = 'url(api/images/'+data[i].cheminPhoto+')';
 
 		
-		//image = "<img src='"+cheminPhoto+"' alt='mojito' width='250'/>";
-		message = "<h1 id='titre-recette'>"+data[i].intitule + "</h1><h2 id='type-recette'>"
+		message ="<h1 id='titre-recette'>"+data[i].intitule + "</h1><h2 id='type-recette'>"
 			+ data[i].typeRecette + "</h2><h2 id='description-recette'>"+data[i].resume+"</h2><br/>";
 		
 		
@@ -20,16 +21,16 @@ const affichage_etapes = (data, choix = 0) => {
 			message += " - " + data[i].description + "<br/>";
 		}		
 		i++;
-
 		while(data[i].numEtape != 1 && i<data.length-1){
 			if(choix == 1){
 				message += " - " + data[i].description + "<br/>";
 			}			
 			i++;
 		}
-		paragraphe.innerHTML = message;
-		paragraphe.appendChild(image); 
-		div_recette.appendChild(paragraphe);
+		
+		a.innerHTML = message;
+		a.appendChild(image); 
+		div_recette.appendChild(a);
 	}	
 }
 
