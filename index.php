@@ -84,8 +84,8 @@
            <div id = "zone_ingredients">
              <div class='ingredients'>
                <select class="ingredients_ajout" type="text" name="ingredients_ajout" onchange="change_valeur(this.parentElement)" >
-               <input type="text" name="qt_ajout" placeholder="Quantité">
-               <label for="ingredients_ajout">int</label>
+               <input class="qt_ajout" type="text" name="qt_ajout" placeholder="Quantité">
+               <label class="unite_ajout" for="ingredients_ajout">int</label>
                <img src="api/ajout_recette/moins.png" alt="moins" class="moins_ingredient" height="15px" width="15px" onclick="supp_div(this.parentElement)">
              </div>
           </div>
@@ -106,7 +106,7 @@
 
            <label for="region_div">Elle vient d'où cette recette ? </label>
            <div id ="region_div">
-             <select id="region_ajout" type="text" name="region_ajout"></select>
+             <select id="region_ajout" class="region_ajout" type="text" name="region_ajout"></select>
              <input class="btn_region" type="button" value="Ajouter une nouvelle région">
            </div>
 
@@ -114,7 +114,7 @@
            <label for="étapes">Les étapes !</label>
            <div id="étapes">
              <label id ="num_etape" for="recette_ajout">1</label>
-             <input class="nom_ajout" type="text" name="nom_ajout" placeholder="Description de l'étape">
+             <input class="etape_ajout" type="text" name="etape_ajout" placeholder="Description de l'étape">
            </div>
           <img src="api/ajout_recette/plus.png" alt="plus" id="plus_etape" height="15px" width="15px">
 
@@ -135,7 +135,7 @@
            <label for="materiel">Et le matos alors ? </label>
            <div id="zone_matos">
              <div class="materiel">
-               <select id="matos_ajout" type="text" name="matos_ajout" ></select>
+               <select id="matos_ajout" class="matos_ajout" type="text" name="matos_ajout" ></select>
                <img src="api/ajout_recette/moins.png" alt="moins" class="moins_matos" height="15px" width="15px" onclick="supp_div(this.parentElement)">
              </div>
            </div>
@@ -163,9 +163,9 @@
              <label for="date">Date de ton cadeau pour notre super site : </label>
              <input id="date" class="date" name="begin" min="2020-05-01" class="bouton_date" value="2020-01-01" >
            </div>
-
          </form>
          <input class="btn_sortir" type="button" value="Retour - Ne pas ajouter de recette" onclick="retour()">
+         <input class="btn_envoi" type="button" value="Envoyez la recette" onclick="envoi()">
        </div>
 
 
@@ -173,6 +173,7 @@
     </div>
   </body>
   <script type="text/javascript" src="./js/ajout_recette.js"></script>
+  <script type="text/javascript" src="./js/post_recette.js"></script>
   <script type="text/javascript" src="./js/function_mep.js"></script>
   <script type="text/javascript" src="./js/requetes.js"></script>
   <script type="text/javascript" src="./js/script.js"></script>
