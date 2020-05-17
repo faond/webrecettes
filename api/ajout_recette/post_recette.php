@@ -7,17 +7,26 @@ header('HTTP/1.1 200 OK');
 $method=strtolower($_SERVER['REQUEST_METHOD']);
 
 if ($method == 'post') {
-  if(isset($_POST['Bouton'])){
+  $json = file_get_contents('php://input');
+  $data = json_decode($json, TRUE);
 
-  }
 
   /*$types = "INSERT INTO typeRecette FROM projets2_type";
 
   $resultats = $connexion->query($types);
   $res = $resultats->fetchAll(PDO::FETCH_ASSOC);
-  $resultats->closeCursor();
+  $resultats->closeCursor();*/
+
+  /*if(!isset($data['nom_ajout'] || $data['type_ajout'] || $data['nb_ajout'])){
+    $res = "champs pas tous remplis";
+  }
+  else{
+    $res = array("nom" => $data['nom_ajout'], "type" => $data['type_ajout'], "nb" => $data['nb_ajout']);
+  }*/
+
+  $res = array("nom" => $data['nom_ajout'], "type" => $data['type_ajout'], "nb" => $data['nb_ajout']);
   $response = json_encode($res);
-  echo $response;*/
+  echo $response;
 
 }
 else {

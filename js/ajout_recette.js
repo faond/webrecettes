@@ -24,6 +24,8 @@ let moins_ingredient = document.querySelector(".moins_ingredient");
 let zone_matos = document.getElementById("zone_matos");
 let formulaire_ajout = document.getElementById("formulaire_ajout");
 let btn_sortir = document.querySelector("btn_sortir");
+let btn_envoi = document.querySelector("btn_envoi");
+let form_ajout = document.querySelector("form_ajout");
 let clic_ajout = 0;
 
 ajoutBtn.addEventListener('click', () => {
@@ -124,6 +126,7 @@ const clonage_div = (bouton, celui_cloné, parent) =>{
   bouton.addEventListener('click', () =>{
       let clone = celui_cloné.cloneNode(true);
       if(parent.firstElementChild != null && bouton == plus_ingredient){
+        clone.children[1].value = null;
         clone.children[2].innerHTML = "int";
       }
       parent.appendChild(clone);
@@ -134,7 +137,7 @@ clonage_div(plus_ingredient, ingredients_div, zone_ingredients);
 clonage_div(plus_matos, materiel_div, zone_matos);
 
 
-const ajout_div = (bouton, nom_class, interieur, parent) =>{
+const ajout_div_bouton = (bouton, nom_class, interieur, parent) =>{
   bouton.addEventListener('click', () =>{
     if(nom_class == "region"){
       div_region.innerHTML = interieur;
@@ -143,11 +146,8 @@ const ajout_div = (bouton, nom_class, interieur, parent) =>{
       if(nom_class == "etape"){
         num_etape++;
         interieur = `<label id ="num_etape" for="recette_ajout">${num_etape}</label>
-        <input class="nom_ajout" type="text" name="nom_ajout" placeholder="Description de l'étape">
-        <img src="api/ajout_recette/moins.png" alt="plus" id="moins_etape" height="15px" width="15px"  onclick="supp_div(this.parentElement)">`;
-      }
-      if(nom_class){
-
+        <input class="etape_ajout" type="text" name="etape_ajout" placeholder="Description de l'étape">
+        <img src="api/ajout_recette/moins.png" alt="plus" id="moins_etape" height="15px" width="15px"  onclick="supp_div_etape(this.parentElement, étapes)">`;
       }
       let nouveau = document.createElement("div");
       nouveau.classList.add(nom_class);
@@ -159,37 +159,56 @@ const ajout_div = (bouton, nom_class, interieur, parent) =>{
 
 
 
-let interieur_matos = `<input type="text" name="matos_ajout" placeholder="Nom ustentile">
-<img src="api/ajout_recette/moins.png" alt="moins" class="moins_matos" height="15px" width="15px" onclick=" supp_div(this.parentElement)">` ;
-ajout_div(btn_matos, "matos", interieur_matos, div_matos);
 
-let interieur_region = `<input type="text" name="region_ajout" placeholder="Nom région">` ;
-ajout_div(btn_region, "region", interieur_region, div_region);
+let interieur_matos = `<input class="matos_ajout" type="text" name="matos_ajout" placeholder="Nom ustentile">
+<img src="api/ajout_recette/moins.png" alt="moins" class="moins_matos" height="15px" width="15px" onclick=" supp_div(this.parentElement)">` ;
+ajout_div_bouton(btn_matos, "matos", interieur_matos, div_matos);
+
+let interieur_region = `<input class="region_ajout" type="text" name="region_ajout" placeholder="Nom région">` ;
+ajout_div_bouton(btn_region, "region", interieur_region, div_region);
 
 let interieur_vide = '' ;
-ajout_div(plus_etape, "etape", interieur_vide, étapes);
-ajout_div(plus_ingredient, "ingredients", interieur_vide, ingredients_div);
+ajout_div_bouton(plus_etape, "etape", interieur_vide, étapes);
+ajout_div_bouton(plus_ingredient, "ingredients", interieur_vide, ingredients_div);
 
-let interieur_ingredient = `<input type="text" name="ingredients_ajout" placeholder="Nom ingrédient">
-<input type="text" name="qt_ajout" placeholder="Quantité">
-<select for="recette_ajout">
+let interieur_ingredient = `<input class="ingredients_ajout" type="text" name="ingredients_ajout" placeholder="Nom ingrédient">
+<input class="qt_ajout" type="text" name="qt_ajout" placeholder="Quantité">
+<select class="unite_ajout" for="recette_ajout">
 <option>int<option>cl<option>g
 </select>
 <img src="api/ajout_recette/moins.png" alt="moins" class="moins_ingredient" height="15px" width="15px"  onclick="supp_div(this.parentElement)">` ;
-ajout_div(btn_ingredient, "ingredients", interieur_ingredient, nouveau_ingredient);
+ajout_div_bouton(btn_ingredient, "ingredients", interieur_ingredient, nouveau_ingredient);
 
 
 const supp_div = (parent) => {
-  parent.innerHTML='';
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+  parent.remove();
+}
+
+const supp_div_etape = (parent, grandparent) => {
+  console.log(num_etape);
+  num_a_supp = parent.firstChild.innerHTML;
+  if(num_a_supp<=num_etape){
+    console.log(num_a_supp)
+    for(let i=num_a_supp ; i<=num_etape ; i++){
+      grandparent.children[i].firstChild.innerHTML -= 1;
+    }
+    num_etape--;
+  }
+  supp_div(parent);
 }
 
 
 const retour = () =>{
   formulaire_ajout.style.display = "none";
   clic_ajout =0;
-  while (ingredients_ajout.firstChild) {
-    ingredients_ajout.removeChild(ingredients_ajout.firstChild);
-  }
+  //for(let i=1 ; i<)
+  //while(zone_ingredients.childNodes.length>0){zone_ingredients.removeChild(zone_ingredients.lastChild)};
+   while (zone_ingredients.firstChild) {
+     zone_ingredients.removeChild(zone_ingredients.firstChild);
+   }
   while (type_ajout.firstChild) {
     type_ajout.removeChild(type_ajout.firstChild);
   }
@@ -219,23 +238,3 @@ var yyyy = today.getFullYear();
 today = dd+'-'+mm+'-'+yyyy;
 document.getElementById("date").setAttribute("min", today);
 document.getElementById("date").setAttribute("value", today);
-
-
-
-
-
-
-
-
-/*
-
-
-fetch("./api/movies/search.php", {
-  method : 'POST',
-  body: JSON.stringify(params)
-
-})
-  .then( response => response.json() )
-  .then( response => {
-
-*/
