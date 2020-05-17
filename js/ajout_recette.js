@@ -7,6 +7,9 @@ const btn_region = document.querySelector(".btn_region");
 const btn_matos = document.querySelector(".btn_matos");
 let ingredients_ajout = document.querySelector(".ingredients_ajout");
 let type_ajout = document.getElementById("type_ajout");
+let diff_ajout = document.getElementById("diff_ajout");
+let cout_ajout = document.getElementById("cout_ajout");
+let nb_ajout = document.getElementById("nb_ajout");
 let region_ajout = document.getElementById("region_ajout");
 let matos_ajout = document.getElementById("matos_ajout");
 let plus_ingredient = document.getElementById("plus_ingredient");
@@ -200,7 +203,7 @@ const supp_div_etape = (parent, grandparent) => {
   supp_div(parent);
 }
 
-
+// A FINIR
 const retour = () =>{
   formulaire_ajout.style.display = "none";
   clic_ajout =0;
@@ -209,14 +212,20 @@ const retour = () =>{
    while (zone_ingredients.firstChild) {
      zone_ingredients.removeChild(zone_ingredients.firstChild);
    }
-  while (type_ajout.firstChild) {
-    type_ajout.removeChild(type_ajout.firstChild);
-  }
-  while (region_ajout.firstChild) {
-    region_ajout.removeChild(region_ajout.firstChild);
-  }
+   enleve_enfants(type_ajout);
+   enleve_enfants(region_ajout);
+   // nb_ajout.value = 1;
+   // enleve_enfants(cout_ajout);
+   // enleve_enfants(diff_ajout);
+
   while (matos_ajout.firstChild) {
     matos_ajout.removeChild(matos_ajout.firstChild);
+  }
+}
+
+const enleve_enfants = (nom_div) =>{
+  while (nom_div.firstChild) {
+    nom_div.removeChild(nom_div.firstChild);
   }
 }
 

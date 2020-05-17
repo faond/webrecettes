@@ -1,8 +1,8 @@
 let params = {};
-
+let ready;
 
 function test_formulaire_plein(){
-  let ready = true;
+
 
   var class_ingredient = document.getElementsByClassName("ingredients_ajout");
   let ingredients_libelle =[];
@@ -70,11 +70,11 @@ function test_formulaire_plein(){
     }
 
   }
-
+  console.log("ready",ready);
   if(ready==false){
     return false;
   }
-  ready = true;
+
   return true;
 
 
@@ -82,6 +82,8 @@ function test_formulaire_plein(){
 }
 
 const envoi = () => {
+  ready = true;
+
   if(test_formulaire_plein()==false){
     console.log("remplir tous les champs");
   }
