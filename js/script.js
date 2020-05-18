@@ -78,6 +78,7 @@ document.getElementById('boisson').onclick = event =>{
 
 document.getElementById('bouton_recette').onclick = event => {
 	filtre(document.getElementById('type').value);
+	document.querySelector("#section_recette").scrollIntoView({behavior: "smooth"});
 }
 
 
