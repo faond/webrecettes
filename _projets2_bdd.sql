@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 16 mai 2020 à 20:03
+-- Généré le :  lun. 18 mai 2020 à 18:54
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -580,7 +580,7 @@ CREATE TABLE IF NOT EXISTS `projets2_photo` (
   `slider` int(11) DEFAULT NULL COMMENT 'Pour séuélctionner les photos qui apparaissent dans le slider',
   PRIMARY KEY (`id_photo`),
   KEY `id_recette` (`id_recette`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projets2_photo`
@@ -590,14 +590,33 @@ INSERT INTO `projets2_photo` (`id_photo`, `cheminPhoto`, `id_recette`, `slider`)
 (1, 'cupcakes.jpg', 3, 1),
 (2, 'lasagnes.jpg', 2, NULL),
 (3, 'mojito.jpg', 9, 1),
-(4, 'muffin.jpg', 3, 1),
 (5, 'tiramisu.jpg', 25, NULL),
-(6, 'brownie.jpg', 17, 1),
+(6, 'brownie.jpg', 17, 0),
 (7, 'carbo.jpg', 10, 1),
 (8, 'cubalibre.jpg', 14, 0),
 (9, 'hummus.jpg', 11, NULL),
 (10, 'pancake.jpg', 18, 0),
-(11, 'tequilasunrise.jpg', 15, NULL);
+(11, 'tequilasunrise.jpg', 15, NULL),
+(12, 'crepes.jpg', 24, 0),
+(13, 'saladenicoise.jpg', 19, NULL),
+(14, 'limonade.jpg', 4, NULL),
+(15, 'saladecomposee.jpg', 1, NULL),
+(16, 'padthai.jpg', 29, NULL),
+(17, 'quichepoireaux.jpg', 6, NULL),
+(18, 'croziflette.jpg', 8, NULL),
+(19, 'steaktartare.jpg', 27, NULL),
+(20, 'tartarepoisson.jpg', 28, NULL),
+(21, 'meringues.jpg', 7, 1),
+(22, 'pastasotto.jpg', 20, NULL),
+(23, 'sexonthebeach.jpg', 13, NULL),
+(24, 'spagbroc.jpg', 23, NULL),
+(25, 'tartine-chevre-poivron.jpg', 26, 0),
+(26, 'tom-yum-goong.jpg', 30, NULL),
+(27, 'tartecitron.jpg', 5, NULL),
+(28, 'blanquette-de-veau.jpg', 21, NULL),
+(29, 'cakepraline.jpg', 12, 1),
+(30, 'blue_laggon.jpg', 16, NULL),
+(31, 'pinacolada.jpg', 22, NULL);
 
 -- --------------------------------------------------------
 
