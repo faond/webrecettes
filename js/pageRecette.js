@@ -45,7 +45,25 @@ document.ready( () => {
     console.log("Page recette");
     var urlcourante = document.location.href;
     console.log(urlcourante);
-    var id = urlcourante.split('id=')[1]; 
+	var id = urlcourante.split('id=')[1]; 
+	id = decodeURI(id);
+
+	// const espace = /%20/gi;
+	// const circonflexeA = /%C3%A2/gi;
+	// const accentAiguE = /%C3%A9/gi;
+	// const accentGraveE = /%%C3%A8/gi;
+	// const accentGraveA = /%C3%A0/gi;
+	// const CCedille = /%C3%A7/gi;
+	// const accentGraveU = /%C3%B9/gi;
+
+	// id = id.replace(espace," ");
+	// id = id.replace(circonflexeA,"â");
+	// id = id.replace(accentAiguE,"é");
+	// id = id.replace(accentGraveE,"è");
+	// id = id.replace(accentGraveA,"à");
+	// id = id.replace(CCedille,"ç");
+	// id = id.replace(accentGraveU,"ù");
+
     console.log(id);
 
     let params = {};
