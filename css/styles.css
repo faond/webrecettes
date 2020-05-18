@@ -169,7 +169,64 @@ a:hover:after {
 .slider.fadeBackground{
   animation: fadeBackground 10s ease-in-out;
 }
+/***************Banderolle recherche********************/
+.formulaire{
+  width:70%;
+  margin-left: 50px; 
+  margin-bottom:40px; 
+}
+#nomRecette{
+  border-radius : 25px; 
+  padding: 5px; 
+  border : 2px solid #efefef; 
+  width: 80%; 
+}
 
+#questions-form{
+  font-family: 'Quicksand', sans-serif;
+}
+
+#questionnaire-header{
+  width: 100%;
+  background-color: white;
+  display: flex; 
+  flex-direction: column;
+  align-content: center;
+}
+.liste-choix{
+  border-radius: 20px;
+  border : 2px solid #efefef; 
+  padding : 5px; 
+  width: 150px;
+  margin-right: 20px; 
+}
+
+#bouton_recette{
+  border-radius : 25px; 
+  padding: 5px; 
+  padding-right:20px;
+  padding-left:20px;
+  background-color:#eeeceb; 
+}
+
+#plus{
+  border-radius:25px;
+  width : 30px;
+  height:30px;
+  /* border : 2px solid #efefef;  */
+  background-color:white;
+  margin-left : 10px; 
+}
+
+.invisible{
+  display:none;
+  transition: all 1s ease-out;}
+
+.menu_container:hover .invisible
+{
+  /* opacity:1; */
+  display:block;
+}
 
 /**************************************page mes recettes*******************************/
 .recipe_container{

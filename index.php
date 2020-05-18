@@ -26,33 +26,42 @@
           </nav>
           </div>
         <h1>Recette de Luxe</h1>
+        <form class="formulaire">
+        <label for="recettes" id="questions-form">Une recette en tête ? : </label>
+        <input id="nomRecette" type="text" name="nomRecette" placeholder="Nom d'une recette">
+        </br></br>
+
+        <div class="invisible">
+          <label for="recettes" id="questions-form">Quel type de recette voulez vous ? : </label>
+          <select id="type" class="liste-choix" name="element">
+            <option value=""></option>
+            <option value="Entrée">Entrée</option>
+            <option value="Plat">Plat</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Boisson">Boisson</option>
+          </select>
+          
+          <label for="recettes" id="questions-form">Quel budget avez-vous ? : </label>
+          <select id="budget" class="liste-choix" name="element">
+            <option value=""></option>
+            <option value="Faible">Faible</option>
+            <option value="Moyen">Moyen</option>
+            <option value="Elevé">Elevé</option>
+          </select>
+
+          <input id="bouton_recette"  type="button" name="type_recette" value="Voir les recettes">
+          </br></br>
+          <label for="recettes" id="questions-form">Ajoute ta recette ! </label>
+          <input class="ajout_recette"  id= "plus" type="button" name="ajout_recette" value="+">
         </div>
-      </div>
-    </header>
-    <div class="main_container">
-      <div id="slider" class="slider"></div>
-      <h1>Vos recettes</h1>
-      <?php
-        include_once "api/connexion.php";
-       ?>
-
-     <form class="formulaire">
-       <label for="recettes">Avez vous une recette précise en tête ? : </label>
-       <input id="nomRecette" type="text" name="nomRecette" placeholder="Nom d'une recette">
-
-       <label for="recettes">Quel type de recette voulez vous ? : </label>
-       <input id="type" type="text" name="recettes" placeholder="Entrée, Plat, Dessert...">
-
-       <label for="recettes">Quel budget maximum avez-vous ? : </label>
-       <input id="budget" type="text" name="budget" placeholder="Faible, Moyen, Elevé...">
-
-       <input id="bouton_recette"  type="button" name="type_recette" value="Voir les recettes">
      </form>
-      <div id="section_recette"></div>
-
-
-
-     <input class="ajout_recette"  type="button" name="ajout_recette" value="Ajouter une recette">
+     
+        </div>
+      
+      </div>
+      <!-- Début questionnaire -->
+      <div id = "questionnaire-header">
+     
        <div id ="formulaire_ajout">
          <h2>Ajoute ta recette !</h2>
          <form class="form_ajout">
@@ -78,8 +87,6 @@
                </script>
              </select>
            </div>
-
-
            <label for="zone_ingredients">Miam, miam, elle se cuisine avec quoi ?</label>
            <div id = "zone_ingredients">
              <div class='ingredients'>
@@ -166,6 +173,19 @@
          </form>
          <input class="btn_sortir" type="button" value="Retour - Ne pas ajouter de recette" onclick="retour()">
          <input class="btn_envoi" type="button" value="Envoyez la recette" onclick="envoi()">
+
+         <!-- fin questionnaire -->
+        </div>
+    </header>
+    <div class="main_container">
+      <div id="slider" class="slider"></div>
+      <h1>Vos recettes</h1>
+      <?php
+        include_once "api/connexion.php";
+       ?>
+
+     
+      <div id="section_recette"></div>
        </div>
 
 
