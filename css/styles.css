@@ -1,6 +1,7 @@
   /*background: #272727;*/
 body{
   /* margin: 1%; */
+  position:relative; 
 }
 
 header{
@@ -24,6 +25,10 @@ h1{
   filter: blur(2px);
 }
 
+header{
+  position:absolute;
+  z-index:10;
+}
 .menu_container{
   position: relative;
   display: flex;
@@ -67,6 +72,7 @@ h1{
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(255,101,7,.2);
   transition: all .5s ease-in-out;
+  z-index:10;
 }
 
 .menu_burger::before,
@@ -112,11 +118,11 @@ h1{
 
 .styles_menu{
   position: absolute;
-  top: 50%;
   opacity: 0;
   font-family: 'Quicksand', sans-serif;
   color: white;
   z-index: 1;
+  margin-top: 25vh;
 }
 
 .styles_menu.fadeOut{
@@ -161,7 +167,7 @@ a:hover:after {
 
 .slider{
   z-index: -1;
-  height: 80vh;
+  height: 100vh;
   background-image: url('../api/images/mojito.jpg');
   opacity: 1;
 }
@@ -222,7 +228,7 @@ a:hover:after {
   display:none;
   transition: all 1s ease-out;}
 
-.menu_container:hover .invisible
+header:hover .invisible
 {
   /* opacity:1; */
   display:block;

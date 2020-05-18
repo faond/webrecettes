@@ -4,8 +4,7 @@ body{
 
 #section_recette{
     background-color: rgb(255, 255, 255);
-    margin-left: 1vw;
-    margin-right: 1vw;
+    margin: 1vw;
     border-radius: 25px;
     display: flex; 
     flex-wrap:wrap;  
@@ -40,11 +39,19 @@ body{
     font-family: 'Quicksand', sans-serif;
     font-size: 15px;
     text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-right: 10%;
 }
 
 .image-recette{
     height : 350px; 
     width:100%;
-    background-size: cover;
+    background-size: 130%;
     border-radius: 5%;
+    transition: all 0.25s ease-out;
+}
+
+.image-recette:hover{
+    background-size: 135%;
 }

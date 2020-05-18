@@ -15,15 +15,7 @@
           <div class="menu_btn">
               <div class="menu_burger"></div>
           </div>
-          <nav id="menu" class="styles_menu">
-            <ul>
-              <a id="entree" href="#"><li>Nos entrées</li></a>
-              <a id="plat" href="#"><li>Nos plats</li></a>
-              <a id= "dessert" href="#"><li>Nos desserts</li></a>
-              <a id="boisson" href="#"><li>Nos boissons</li></a>
-              <a id="mesRecettes" href="pages/mesRecettes.php"><li>Mes recettes</li></a>
-            </ul>
-          </nav>
+          
           </div>
         <h1>Recette de Luxe</h1>
         <form class="formulaire">
@@ -177,9 +169,17 @@
          <!-- fin questionnaire -->
         </div>
     </header>
+    <nav id="menu" class="styles_menu">
+            <ul>
+              <a id="entree" href="#"><li>Nos entrées</li></a>
+              <a id="plat" href="#"><li>Nos plats</li></a>
+              <a id= "dessert" href="#"><li>Nos desserts</li></a>
+              <a id="boisson" href="#"><li>Nos boissons</li></a>
+              <a id="mesRecettes" href="pages/mesRecettes.php"><li>Mes recettes</li></a>
+            </ul>
+          </nav>
     <div class="main_container">
       <div id="slider" class="slider"></div>
-      <h1>Vos recettes</h1>
       <?php
         include_once "api/connexion.php";
        ?>

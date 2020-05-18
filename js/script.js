@@ -62,18 +62,22 @@ document.ready(() => {
 
 document.getElementById('entree').onclick = event =>{
 	filtre("Entrée");
+	document.querySelector("#section_recette").scrollIntoView({behavior: "smooth"});
 }
 
 document.getElementById('plat').onclick = event =>{
 	filtre("Plat");
+	document.querySelector("#section_recette").scrollIntoView({behavior: "smooth"});
 }
 
 document.getElementById('dessert').onclick = event =>{
 	filtre("Dessert");
+	document.querySelector("#section_recette").scrollIntoView({behavior: "smooth"});
 }
 
 document.getElementById('boisson').onclick = event =>{
 	filtre("Boisson");
+	document.querySelector("#section_recette").scrollIntoView({behavior: "smooth"});
 }
 
 document.getElementById('bouton_recette').onclick = event => {
