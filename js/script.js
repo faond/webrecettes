@@ -34,27 +34,72 @@ const affichage_etapes = (data, choix = 0) => {
 	}	
 }
 
-const filtre = (type) => {
+const filtre = (type/*, nomRecette, budget*/) => {
 	event.preventDefault();
 	console.log("Clic");
 	//on créé un objet Javascript
-	let params = {};
-	params.type = type;
-	params.nomRecette = document.getElementById('nomRecette').value;
-	params.budget = document.getElementById('budget').value;
-
-	let url = new URL("api/requetes.php", window.location.href);
-	url.search = new URLSearchParams(params);
-	fetch(url, {
+	let nomRecetteApproximatif = document.getElementById('nomRecette').value;
+	let url1 = new URL("api/liste_recette.php", window.location.href);
+	fetch(url1, {
 		method: 'GET'
-	}).then(response => response.json())
-	.then( data => {
-		console.log(data);
-		affichage_etapes(data); 
+	}).then( response => response.json() )
+		.then( liste_recettes => {
+			// console.log("liste_recettes");
+			// console.log(liste_recettes);
+			// console.log("intitulé");
+			// console.log(liste_recettes[0]['intitule'])
+			
+			let j=0;
+			let noms_corrects = {};
+			
+			/*------------ Pour afficher un résultat même si l'utilisateur écrit mal le nom ----------*/
+			nomRecetteApproximatif = nomRecetteApproximatif.toLowerCase();
+			nomRecetteApproximatif = nomRecetteApproximatif.toString().replace(/é|è|ê|ë/gi,"e");
+			nomRecetteApproximatif = nomRecetteApproximatif.toString().replace(/â|à|ã/gi,"a");
+			nomRecetteApproximatif = nomRecetteApproximatif.toString().replace(/ù|ü/gi,"u");
+			nomRecetteApproximatif = nomRecetteApproximatif.toString().replace(/ô/gi,"o");
+			nomRecetteApproximatif = nomRecetteApproximatif.toString().replace(/ç/gi,"c");
+
+			liste_recettes.forEach(element => {
+				elmt_simpl = element['intitule'].toLowerCase();
+				elmt_simpl = elmt_simpl.toString().replace(/é|è|ê|ë/gi,"e");
+				elmt_simpl = elmt_simpl.toString().replace(/â|à|ã/gi,"a");
+				elmt_simpl = elmt_simpl.toString().replace(/ù|ü/gi,"u");
+				elmt_simpl = elmt_simpl.toString().replace(/ô/gi,"o");
+				elmt_simpl = elmt_simpl.toString().replace(/ç/gi,"c");	
+
+				if(elmt_simpl.indexOf(nomRecetteApproximatif)!=-1){					
+				noms_corrects[j]=element['intitule'];
+				j++; 
+				}
+			});
+
+			console.log("noms corrects");
+			console.log(noms_corrects);
+			let params = {};
+			params.type = type;
+			if(document.getElementById('nomRecette').value!=""){
+				params.nomRecette = noms_corrects[0];
+			}
+			else params.nomRecette ="";
+			params.budget = document.getElementById('budget').value;
+
+			let url = new URL("api/requetes.php", window.location.href);
+			url.search = new URLSearchParams(params);
+			fetch(url, {
+				method: 'GET'
+			}).then(response => response.json())
+			.then( data => {
+				console.log(data);
+				affichage_etapes(data); 
+		});
+			
 	});
+
+
+	
   }
 
-  
 
 document.ready(() => {
 	filtre(document.getElementById('type').value);
@@ -84,6 +129,13 @@ document.getElementById('bouton_recette').onclick = event => {
 	filtre(document.getElementById('type').value);
 	document.querySelector("#section_recette").scrollIntoView({behavior: "smooth"});
 }
+
+document.addEventListener('keyup', (e)=>{
+    if(e.keyCode == 13) {
+        filtre(document.getElementById('type').value);
+		document.querySelector("#section_recette").scrollIntoView({behavior: "smooth"});
+    };
+});
 
 
 

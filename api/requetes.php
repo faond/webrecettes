@@ -1,6 +1,7 @@
 <?php
 
 include_once "connexion.php";
+// include_once "liste_recette.php";
 
 /*$title = strtolower($_GET['title']);
 $date = $_GET['date'];
@@ -12,12 +13,21 @@ header('HTTP/1.1 200 OK');
 $method=strtolower($_SERVER['REQUEST_METHOD']); //On recupère la méthode
 
 if ($method == 'get') { //on regarde si la méthode est bien en GET
-
+  // $liste_recettes = $test; 
   //vu qu'on est en GET de ses morts on récupère les éléments dans l'URL
   $type = $_GET['type'];
   $nomRecette = $_GET['nomRecette'];
   $budget = $_GET['budget'];
 
+  $requete_liste_recettes = "SELECT intitule FROM projets2_recette";
+  $resultats_liste  = $connexion->query($requete_liste_recettes);
+  //var_dump($resultats_liste);
+  //$res_liste = $resultats_liste->fetchAll(PDO::FETCH_ASSOC);
+  $resultats_liste->closeCursor(); //sortir de la connexion*/
+  //$liste_recettes = json_encode($res_liste);
+
+ 
+  // strcmp($nomRecette, $resultat[i]);
 // On récupère directement le body
 //$json = file_get_contents('php://input');
 
