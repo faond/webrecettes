@@ -1,5 +1,7 @@
 let params = {};
 let ready;
+let erreur = [];
+let envoyer_recette = document.getElementsByClassName("btn_envoi");
 
 function test_formulaire_plein(){
 
@@ -41,7 +43,6 @@ function test_formulaire_plein(){
   params["matos_ajout"] = materiel;
   params["etape_ajout"] = etapes;
   console.log(params);
-  //console.log(params["etape_ajout"][0]);
 
 
   for (const property in params) {
@@ -72,6 +73,7 @@ function test_formulaire_plein(){
   }
   console.log("ready",ready);
   if(ready==false){
+    //msg_erreur();
     return false;
   }
 
@@ -114,7 +116,7 @@ const remplir_tableau = (tableau, class_tabl) => {
 const verif_info = (params, property) => {
   if(params[property]==""){
     document.querySelector(`.${property}`).style = "border-color: rgba(211, 96, 100, 0.7)";
-    console.log("souci ici :", property, params[property]);
+    erreur.push("autre");
     ready = false;
   }
   else{
@@ -130,10 +132,51 @@ const verif_info = (params, property) => {
 
 const verif_info_tabl = (class_nom, dedans) => {
   if(class_nom[dedans].value==""){
-      class_nom[dedans].style = "border-color: rgba(211, 96, 100, 0.7)";
-      ready = false;
+    class_nom[dedans].style = "border-color: rgba(211, 96, 100, 0.7)";
+    ready = false;
     }
-    else{
+  else{
+
+    if(class_nom[dedans].classList == "ingredients_ajout" || class_nom[dedans].classList == "matos_ajout"){
+      if(compte_occurence(class_nom, class_nom[dedans].value).length > 1){
+        for(let l=1 ; l<compte_occurence(class_nom, class_nom[dedans].value).length ; l++){
+          class_nom[compte_occurence(class_nom, class_nom[dedans].value)[l]].style = "border-color: rgba(21, 96, 100, 0.7)";
+          erreur.push("doublon");
+        }
+      }
+      else{
+        class_nom[dedans].style = "border-color: none";
+      }
+    }
+    else if(class_nom[dedans].classList != "ingredients_ajout" || class_nom[dedans].classList != "matos_ajout"){
       class_nom[dedans].style = "border-color: none";
     }
+
+  }
 }
+
+function compte_occurence(tableau_a_verif, occurence_cherchee){
+  let tableau_occ = [];
+  for (let i=0 ; i<tableau_a_verif.length; i++){
+    if(tableau_a_verif[i].value == occurence_cherchee){
+      tableau_occ.push(i);
+    }
+  }
+  return tableau_occ;
+}
+
+
+/*
+const msg_erreur = () => {
+  let nouveau = document.createElement("div");
+  console.log(erreur);
+  nouveau.classList.add("message");
+  if(erreur.includes("autre")){
+    nouveau.innerHTML += "Merci de remplir tous les champs";
+  }
+  else if(erreur.includes("doublon")){
+    nouveau.innerHTML += "Certains éléments apparaissent plusieurs fois, merci de les supprimer";
+  }
+  //envoyer_recette.appendChild(nouveau);
+}
+*/

@@ -163,7 +163,7 @@ const ajout_div_bouton = (bouton, nom_class, interieur, parent) =>{
 
 
 
-let interieur_matos = `<input class="matos_ajout" type="text" name="matos_ajout" placeholder="Nom ustentile">
+let interieur_matos = `<input class="matos_ajout vient_du_plus" type="text" name="matos_ajout" placeholder="Nom ustentile">
 <img src="api/ajout_recette/moins.png" alt="moins" class="moins_matos" height="15px" width="15px" onclick=" supp_div(this.parentElement)">` ;
 ajout_div_bouton(btn_matos, "matos", interieur_matos, div_matos);
 
@@ -174,7 +174,7 @@ let interieur_vide = '' ;
 ajout_div_bouton(plus_etape, "etape", interieur_vide, étapes);
 ajout_div_bouton(plus_ingredient, "ingredients", interieur_vide, ingredients_div);
 
-let interieur_ingredient = `<input class="ingredients_ajout" type="text" name="ingredients_ajout" placeholder="Nom ingrédient">
+let interieur_ingredient = `<input class="ingredients_ajout vient_du_plus" type="text" name="ingredients_ajout" placeholder="Nom ingrédient">
 <input class="qt_ajout" type="text" name="qt_ajout" placeholder="Quantité">
 <select class="unite_ajout" for="recette_ajout">
 <option>int<option>cl<option>g

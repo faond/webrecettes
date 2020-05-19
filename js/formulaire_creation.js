@@ -1,3 +1,6 @@
+// JS PAS UTILE A VIRER NORMALEMENT
+
+
 let div_form = document.getElementById("formulaire_ajout");
 const ajoutBtn = document.querySelector(".ajout_recette");
 
