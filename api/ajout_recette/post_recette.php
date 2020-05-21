@@ -4,33 +4,36 @@ include_once "../connexion.php";
 header('Content-Type: application/json; charset=UTF-8');
 header('HTTP/1.1 200 OK');
 
+
 $method=strtolower($_SERVER['REQUEST_METHOD']);
 
 if ($method == 'post') {
   $json = file_get_contents('php://input');
   $data = json_decode($json, TRUE);
 
+  $pseudo = $data['pseudo_ajout'];
+  $sql = "INSERT INTO projets2_auteur VALUES (:pseudo)";
+  $response[':pseudo']=$pseudo;
+  $resultats  = $connexion->prepare($sql);
+  $resultats->execute($response);
 
-  /*$types = "INSERT INTO typeRecette FROM projets2_type";
 
-  $resultats = $connexion->query($types);
-  $res = $resultats->fetchAll(PDO::FETCH_ASSOC);
-  $resultats->closeCursor();*/
-
-  /*if(!isset($data['nom_ajout'] || $data['type_ajout'] || $data['nb_ajout'])){
-    $res = "champs pas tous remplis";
+  if ($resultats){
+    $response = json_encode("Le pseudo a été ajouté");
+    echo $response;
   }
-  else{
-    $res = array("nom" => $data['nom_ajout'], "type" => $data['type_ajout'], "nb" => $data['nb_ajout']);
-  }*/
 
-  $res = array("nom" => $data['nom_ajout'], "type" => $data['type_ajout'], "nb" => $data['nb_ajout']);
-  $response = json_encode($res);
-  echo $response;
+		else{
+      $response = json_encode("erreur");
+      echo $response;
+    }
+    $resultats->closeCursor();
 
 }
 else {
   http_response_code(404);
 }
+
+// faire des fonctions qui permettent d'appeler pluseiurs fichiers php
 
 ?>
