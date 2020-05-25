@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.3
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 18 mai 2020 à 18:54
--- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.3.12
+-- Hôte : localhost:3308
+-- Généré le :  lun. 25 mai 2020 à 22:04
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,24 +26,19 @@ SET time_zone = "+00:00";
 -- Structure de la table `projets2_auteur`
 --
 
-DROP TABLE IF EXISTS `projets2_auteur`;
-CREATE TABLE IF NOT EXISTS `projets2_auteur` (
-  `pseudo` varchar(50) NOT NULL,
-  `categorieScl` varchar(100) NOT NULL,
-  `id_region` int(11) NOT NULL,
-  PRIMARY KEY (`pseudo`),
-  KEY `id_region` (`id_region`)
+CREATE TABLE `projets2_auteur` (
+  `pseudo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projets2_auteur`
 --
 
-INSERT INTO `projets2_auteur` (`pseudo`, `categorieScl`, `id_region`) VALUES
-('Erwann', 'Etudiant', 10),
-('Fanny', 'Etudiant', 7),
-('Jeanne', 'Etudiant', 7),
-('Paul', 'Etudiant', 7);
+INSERT INTO `projets2_auteur` (`pseudo`) VALUES
+('Erwann'),
+('Fanny'),
+('Jeanne'),
+('Paul');
 
 -- --------------------------------------------------------
 
@@ -53,13 +46,10 @@ INSERT INTO `projets2_auteur` (`pseudo`, `categorieScl`, `id_region`) VALUES
 -- Structure de la table `projets2_comprend`
 --
 
-DROP TABLE IF EXISTS `projets2_comprend`;
-CREATE TABLE IF NOT EXISTS `projets2_comprend` (
+CREATE TABLE `projets2_comprend` (
   `id_recette` int(11) NOT NULL,
   `id_ingredient` int(11) NOT NULL,
-  `quantite` int(11) NOT NULL,
-  PRIMARY KEY (`id_recette`,`id_ingredient`),
-  KEY `id_ingredient` (`id_ingredient`)
+  `quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -299,13 +289,10 @@ INSERT INTO `projets2_comprend` (`id_recette`, `id_ingredient`, `quantite`) VALU
 -- Structure de la table `projets2_etape`
 --
 
-DROP TABLE IF EXISTS `projets2_etape`;
-CREATE TABLE IF NOT EXISTS `projets2_etape` (
+CREATE TABLE `projets2_etape` (
   `numEtape` int(11) NOT NULL,
   `description` text NOT NULL,
-  `id_recette` int(11) NOT NULL,
-  PRIMARY KEY (`numEtape`,`id_recette`),
-  KEY `id_recette` (`id_recette`)
+  `id_recette` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -435,14 +422,12 @@ INSERT INTO `projets2_etape` (`numEtape`, `description`, `id_recette`) VALUES
 -- Structure de la table `projets2_ingredient`
 --
 
-DROP TABLE IF EXISTS `projets2_ingredient`;
-CREATE TABLE IF NOT EXISTS `projets2_ingredient` (
-  `id_ingredient` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `projets2_ingredient` (
+  `id_ingredient` int(11) NOT NULL,
   `libelle` varchar(100) NOT NULL,
   `unite` varchar(50) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_ingredient`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
+  `type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projets2_ingredient`
@@ -572,15 +557,12 @@ INSERT INTO `projets2_ingredient` (`id_ingredient`, `libelle`, `unite`, `type`) 
 -- Structure de la table `projets2_photo`
 --
 
-DROP TABLE IF EXISTS `projets2_photo`;
-CREATE TABLE IF NOT EXISTS `projets2_photo` (
-  `id_photo` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `projets2_photo` (
+  `id_photo` int(11) NOT NULL,
   `cheminPhoto` varchar(100) NOT NULL,
   `id_recette` int(11) NOT NULL,
-  `slider` int(11) DEFAULT NULL COMMENT 'Pour séuélctionner les photos qui apparaissent dans le slider',
-  PRIMARY KEY (`id_photo`),
-  KEY `id_recette` (`id_recette`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+  `slider` int(11) DEFAULT NULL COMMENT 'Pour séuélctionner les photos qui apparaissent dans le slider'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projets2_photo`
@@ -624,9 +606,8 @@ INSERT INTO `projets2_photo` (`id_photo`, `cheminPhoto`, `id_recette`, `slider`)
 -- Structure de la table `projets2_recette`
 --
 
-DROP TABLE IF EXISTS `projets2_recette`;
-CREATE TABLE IF NOT EXISTS `projets2_recette` (
-  `id_recette` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `projets2_recette` (
+  `id_recette` int(11) NOT NULL,
   `intitule` varchar(300) NOT NULL,
   `resume` text NOT NULL,
   `nbPersonne` int(11) NOT NULL,
@@ -634,21 +615,17 @@ CREATE TABLE IF NOT EXISTS `projets2_recette` (
   `tpsCuisson` int(11) NOT NULL,
   `difficulte` int(11) NOT NULL,
   `typeCout` varchar(100) NOT NULL,
-  `date` date NOT NULL,
+  `date_recette` date NOT NULL,
   `id_type` int(11) NOT NULL,
   `id_region` int(11) NOT NULL,
-  `pseudo` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id_recette`),
-  KEY `id_type` (`id_type`),
-  KEY `id_region` (`id_region`),
-  KEY `pseudo` (`pseudo`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='Fiche technique recette ';
+  `pseudo` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Fiche technique recette ';
 
 --
 -- Déchargement des données de la table `projets2_recette`
 --
 
-INSERT INTO `projets2_recette` (`id_recette`, `intitule`, `resume`, `nbPersonne`, `tpsPreparation`, `tpsCuisson`, `difficulte`, `typeCout`, `date`, `id_type`, `id_region`, `pseudo`) VALUES
+INSERT INTO `projets2_recette` (`id_recette`, `intitule`, `resume`, `nbPersonne`, `tpsPreparation`, `tpsCuisson`, `difficulte`, `typeCout`, `date_recette`, `id_type`, `id_region`, `pseudo`) VALUES
 (1, 'Salade composée', 'Salade composée thon/maïs très simple pour \r\ngarantir une entrée qui fonctionne à tous les coups !', 4, 25, 10, 1, 'Faible', '2020-04-16', 1, 2, 'Fanny'),
 (2, 'Lasagnes à la bolognaise', 'Un petit gout d\'Italie bien mérité après la préparation de ces lasagnes bolognaises maison !', 8, 125, 95, 2, 'Moyen', '2020-04-16', 2, 3, 'Fanny'),
 (3, 'Fondant au chocolat', 'Une envie de dessert ? Une envie de chocolat ? \r\nFaites vous plaisir avec un fondant au chocolat, en quantité suffisante vous en garderez même pour plusieurs repas ! ', 6, 40, 30, 1, 'Faible', '2020-04-16', 3, 1, 'Fanny'),
@@ -686,12 +663,10 @@ INSERT INTO `projets2_recette` (`id_recette`, `intitule`, `resume`, `nbPersonne`
 -- Structure de la table `projets2_region`
 --
 
-DROP TABLE IF EXISTS `projets2_region`;
-CREATE TABLE IF NOT EXISTS `projets2_region` (
-  `id_region` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_region`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+CREATE TABLE `projets2_region` (
+  `id_region` int(11) NOT NULL,
+  `nom` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projets2_region`
@@ -712,7 +687,8 @@ INSERT INTO `projets2_region` (`id_region`, `nom`) VALUES
 (12, 'Bretagne'),
 (13, 'Thaïlande'),
 (14, 'Floride'),
-(15, 'France');
+(15, 'France'),
+(16, 'TUnnel');
 
 -- --------------------------------------------------------
 
@@ -720,13 +696,10 @@ INSERT INTO `projets2_region` (`id_region`, `nom`) VALUES
 -- Structure de la table `projets2_requiert`
 --
 
-DROP TABLE IF EXISTS `projets2_requiert`;
-CREATE TABLE IF NOT EXISTS `projets2_requiert` (
+CREATE TABLE `projets2_requiert` (
   `id_recette` int(11) NOT NULL,
   `id_ustensile` int(11) NOT NULL,
-  `quantite` int(11) NOT NULL,
-  PRIMARY KEY (`id_recette`,`id_ustensile`),
-  KEY `id_ustensile` (`id_ustensile`)
+  `quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -842,12 +815,10 @@ INSERT INTO `projets2_requiert` (`id_recette`, `id_ustensile`, `quantite`) VALUE
 -- Structure de la table `projets2_type`
 --
 
-DROP TABLE IF EXISTS `projets2_type`;
-CREATE TABLE IF NOT EXISTS `projets2_type` (
-  `id_type` int(11) NOT NULL AUTO_INCREMENT,
-  `typeRecette` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+CREATE TABLE `projets2_type` (
+  `id_type` int(11) NOT NULL,
+  `typeRecette` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projets2_type`
@@ -865,12 +836,10 @@ INSERT INTO `projets2_type` (`id_type`, `typeRecette`) VALUES
 -- Structure de la table `projets2_ustensile`
 --
 
-DROP TABLE IF EXISTS `projets2_ustensile`;
-CREATE TABLE IF NOT EXISTS `projets2_ustensile` (
-  `id_ustensile` int(11) NOT NULL AUTO_INCREMENT,
-  `libelle` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_ustensile`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+CREATE TABLE `projets2_ustensile` (
+  `id_ustensile` int(11) NOT NULL,
+  `libelle` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `projets2_ustensile`
@@ -910,14 +879,119 @@ INSERT INTO `projets2_ustensile` (`id_ustensile`, `libelle`) VALUES
 (31, 'Plat à tarte');
 
 --
--- Contraintes pour les tables déchargées
+-- Index pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `projets2_auteur`
+-- Index pour la table `projets2_auteur`
 --
 ALTER TABLE `projets2_auteur`
-  ADD CONSTRAINT `projets2_auteur_ibfk_1` FOREIGN KEY (`id_region`) REFERENCES `projets2_region` (`id_region`);
+  ADD PRIMARY KEY (`pseudo`);
+
+--
+-- Index pour la table `projets2_comprend`
+--
+ALTER TABLE `projets2_comprend`
+  ADD PRIMARY KEY (`id_recette`,`id_ingredient`),
+  ADD KEY `id_ingredient` (`id_ingredient`);
+
+--
+-- Index pour la table `projets2_etape`
+--
+ALTER TABLE `projets2_etape`
+  ADD PRIMARY KEY (`numEtape`,`id_recette`),
+  ADD KEY `id_recette` (`id_recette`);
+
+--
+-- Index pour la table `projets2_ingredient`
+--
+ALTER TABLE `projets2_ingredient`
+  ADD PRIMARY KEY (`id_ingredient`);
+
+--
+-- Index pour la table `projets2_photo`
+--
+ALTER TABLE `projets2_photo`
+  ADD PRIMARY KEY (`id_photo`),
+  ADD KEY `id_recette` (`id_recette`);
+
+--
+-- Index pour la table `projets2_recette`
+--
+ALTER TABLE `projets2_recette`
+  ADD PRIMARY KEY (`id_recette`),
+  ADD KEY `id_type` (`id_type`),
+  ADD KEY `id_region` (`id_region`),
+  ADD KEY `pseudo` (`pseudo`);
+
+--
+-- Index pour la table `projets2_region`
+--
+ALTER TABLE `projets2_region`
+  ADD PRIMARY KEY (`id_region`);
+
+--
+-- Index pour la table `projets2_requiert`
+--
+ALTER TABLE `projets2_requiert`
+  ADD PRIMARY KEY (`id_recette`,`id_ustensile`),
+  ADD KEY `id_ustensile` (`id_ustensile`);
+
+--
+-- Index pour la table `projets2_type`
+--
+ALTER TABLE `projets2_type`
+  ADD PRIMARY KEY (`id_type`);
+
+--
+-- Index pour la table `projets2_ustensile`
+--
+ALTER TABLE `projets2_ustensile`
+  ADD PRIMARY KEY (`id_ustensile`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `projets2_ingredient`
+--
+ALTER TABLE `projets2_ingredient`
+  MODIFY `id_ingredient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+
+--
+-- AUTO_INCREMENT pour la table `projets2_photo`
+--
+ALTER TABLE `projets2_photo`
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT pour la table `projets2_recette`
+--
+ALTER TABLE `projets2_recette`
+  MODIFY `id_recette` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT pour la table `projets2_region`
+--
+ALTER TABLE `projets2_region`
+  MODIFY `id_region` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT pour la table `projets2_type`
+--
+ALTER TABLE `projets2_type`
+  MODIFY `id_type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `projets2_ustensile`
+--
+ALTER TABLE `projets2_ustensile`
+  MODIFY `id_ustensile` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- Contraintes pour les tables déchargées
+--
 
 --
 -- Contraintes pour la table `projets2_comprend`
@@ -950,7 +1024,6 @@ ALTER TABLE `projets2_recette`
 ALTER TABLE `projets2_requiert`
   ADD CONSTRAINT `projets2_requiert_ibfk_1` FOREIGN KEY (`id_recette`) REFERENCES `projets2_recette` (`id_recette`),
   ADD CONSTRAINT `projets2_requiert_ibfk_2` FOREIGN KEY (`id_ustensile`) REFERENCES `projets2_ustensile` (`id_ustensile`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

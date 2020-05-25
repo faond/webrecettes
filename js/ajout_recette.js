@@ -10,7 +10,7 @@ let type_ajout = document.getElementById("type_ajout");
 let diff_ajout = document.getElementById("diff_ajout");
 let cout_ajout = document.getElementById("cout_ajout");
 let nb_ajout = document.getElementById("nb_ajout");
-let region_ajout = document.getElementById("region_ajout");
+let region_select = document.getElementById("region_select");
 let matos_ajout = document.getElementById("matos_ajout");
 let plus_ingredient = document.getElementById("plus_ingredient");
 let plus_matos = document.getElementById("plus_matos");
@@ -74,7 +74,7 @@ ajoutBtn.addEventListener('click', () => {
             data.forEach( element => {
               regions.push(element.nom);
             });
-            listeDeroulante(region_ajout, regions);
+            listeDeroulante(region_select, regions);
           });
 
       let url_materiel = new URL("api/ajout_recette/materiel.php", window.location.href);
@@ -163,19 +163,19 @@ const ajout_div_bouton = (bouton, nom_class, interieur, parent) =>{
 
 
 
-let interieur_matos = `<input class="matos_ajout vient_du_plus" type="text" name="matos_ajout" placeholder="Nom ustentile">
+let interieur_matos = `<input class="matos_ajout plus_matos" type="text" name="matos_ajout" placeholder="Nom ustentile">
 <img src="api/ajout_recette/moins.png" alt="moins" class="moins_matos" height="15px" width="15px" onclick=" supp_div(this.parentElement)">` ;
 ajout_div_bouton(btn_matos, "matos", interieur_matos, div_matos);
 
-let interieur_region = `<input class="region_ajout" type="text" name="region_ajout" placeholder="Nom région">` ;
+let interieur_region = `<input id='region_input' class="region_ajout" type="text" name="region_ajout" placeholder="Nom région">` ;
 ajout_div_bouton(btn_region, "region", interieur_region, div_region);
 
 let interieur_vide = '' ;
 ajout_div_bouton(plus_etape, "etape", interieur_vide, étapes);
 ajout_div_bouton(plus_ingredient, "ingredients", interieur_vide, ingredients_div);
 
-let interieur_ingredient = `<input class="ingredients_ajout vient_du_plus" type="text" name="ingredients_ajout" placeholder="Nom ingrédient">
-<input class="qt_ajout" type="text" name="qt_ajout" placeholder="Quantité">
+let interieur_ingredient = `<input class="ingredients_ajout plus_ingredient_nom" type="text" name="ingredients_ajout" placeholder="Nom ingrédient">
+<input class="qt_ajout" type="text" name="qt_ajout plus_ingredient_qt" placeholder="Quantité">
 <select class="unite_ajout" for="recette_ajout">
 <option>int<option>cl<option>g
 </select>
@@ -213,7 +213,7 @@ const retour = () =>{
      zone_ingredients.removeChild(zone_ingredients.firstChild);
    }
    enleve_enfants(type_ajout);
-   enleve_enfants(region_ajout);
+   enleve_enfants(region_select);
    // nb_ajout.value = 1;
    // enleve_enfants(cout_ajout);
    // enleve_enfants(diff_ajout);
@@ -244,6 +244,6 @@ var yyyy = today.getFullYear();
         mm='0'+mm
     }
 
-today = dd+'-'+mm+'-'+yyyy;
+today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("date").setAttribute("min", today);
 document.getElementById("date").setAttribute("value", today);

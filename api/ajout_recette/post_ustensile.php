@@ -12,19 +12,23 @@ if ($method == 'post') {
   $data = json_decode($json, TRUE);
 
 
-  $pseudo = $data['pseudo_ajout'];
-
-  $sql_pseudo = "INSERT INTO projets2_auteur VALUES (:pseudo)";
-  $rempliPseudo[':pseudo']=$pseudo;
-  $requetePseudo = $connexion->prepare($sql_pseudo);
-  $requetePseudo->execute($rempliPseudo);
 
 
-  $requetePseudo->closeCursor();
+  $nom = $data;
 
 
-  $envoie = json_encode($pseudo);
+  $poster_matos= "INSERT INTO projets2_ustensile (libelle) VALUES (:nom)";
+
+  $response1[':nom']=$nom;
+
+  $resultats1  = $connexion->prepare($poster_matos);
+  $resultats1->execute($response1);
+
+  $resultats1->closeCursor();
+
+  $envoie = json_encode($nom);
   echo $envoie;
+
 
 }
 else {
