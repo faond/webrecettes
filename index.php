@@ -15,7 +15,7 @@
           <div class="menu_btn">
               <div class="menu_burger"></div>
           </div>
-          
+
           </div>
         <h1>Recette de Luxe</h1>
         <form class="formulaire">
@@ -32,7 +32,7 @@
             <option value="Dessert">Dessert</option>
             <option value="Boisson">Boisson</option>
           </select>
-          
+
           <label for="recettes" id="questions-form">Quel budget avez-vous ? : </label>
           <select id="budget" class="liste-choix" name="element">
             <option value=""></option>
@@ -47,13 +47,13 @@
           <input class="ajout_recette"  id= "plus" type="button" name="ajout_recette" value="+">
         </div>
      </form>
-     
+
         </div>
-      
+
       </div>
       <!-- Début questionnaire -->
       <div id = "questionnaire-header">
-     
+
        <div id ="formulaire_ajout">
          <h2>Ajoute ta recette !</h2>
          <form class="form_ajout">
@@ -82,8 +82,8 @@
            <label for="zone_ingredients">Miam, miam, elle se cuisine avec quoi ?</label>
            <div id = "zone_ingredients">
              <div class='ingredients'>
-               <select class="ingredients_ajout" type="text" name="ingredients_ajout" onchange="change_valeur(this.parentElement)" >
-               <input class="qt_ajout" type="text" name="qt_ajout" placeholder="Quantité">
+               <select class="ingredients_ajout select_ingredient_nom" type="text" name="ingredients_ajout" onchange="change_valeur(this.parentElement)" >
+               <input class="qt_ajout select_ingredient_qt" type="text" name="qt_ajout" placeholder="Quantité">
                <label class="unite_ajout" for="ingredients_ajout">int</label>
                <img src="api/ajout_recette/moins.png" alt="moins" class="moins_ingredient" height="15px" width="15px" onclick="supp_div(this.parentElement)">
              </div>
@@ -105,7 +105,7 @@
 
            <label for="region_div">Elle vient d'où cette recette ? </label>
            <div id ="region_div">
-             <select id="region_ajout" class="region_ajout" type="text" name="region_ajout"></select>
+             <select id="region_select" class="region_ajout" type="text" name="region_ajout"></select>
              <input class="btn_region" type="button" value="Ajouter une nouvelle région">
            </div>
 
@@ -134,7 +134,7 @@
            <label for="materiel">Et le matos alors ? </label>
            <div id="zone_matos">
              <div class="materiel">
-               <select id="matos_ajout" class="matos_ajout" type="text" name="matos_ajout" ></select>
+               <select id="matos_ajout" class="matos_ajout select_matos" type="text" name="matos_ajout" ></select>
                <img src="api/ajout_recette/moins.png" alt="moins" class="moins_matos" height="15px" width="15px" onclick="supp_div(this.parentElement)">
              </div>
            </div>
@@ -160,7 +160,7 @@
 
            <div>
              <label for="date">Date de ton cadeau pour notre super site : </label>
-             <input id="date" class="date" name="begin" min="2020-05-01" class="bouton_date" value="2020-01-01" >
+             <input id="date" class="date_ajout" name="begin" min="2020-05-01" class="bouton_date" value="2020-01-01" >
            </div>
          </form>
          <input class="btn_sortir" type="button" value="Retour - Ne pas ajouter de recette" onclick="retour()">
@@ -184,7 +184,7 @@
         include_once "api/connexion.php";
        ?>
 
-     
+
       <div id="section_recette"></div>
        </div>
 
