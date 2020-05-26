@@ -235,6 +235,14 @@ header:hover .invisible
 }
 
 /**************************************page mes recettes*******************************/
+.recipe_selected{
+  display: none;
+}
+
+.recipe_selected.up{
+  display: block;
+}
+
 .recipe_container{
   display: flex;
   flex-direction: column;
@@ -275,11 +283,11 @@ header:hover .invisible
   left: 0;
 }
 
-.button{
+.field{
   display: none;
 }
 
-.button.up{
+.field.up{
   display: block;
 }
 
