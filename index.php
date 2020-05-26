@@ -59,7 +59,7 @@
          <form class="form_ajout">
            <div>
              <label for="nom_ajout">Un p'tit nom pour ta recette : </label>
-             <input class="nom_ajout" type="text" name="nom_ajout" placeholder="Nom de la recette">
+             <input class="nom_ajout input" type="text" name="nom_ajout" placeholder="Nom de la recette">
            </div>
 
            <div>
@@ -83,7 +83,7 @@
            <div id = "zone_ingredients">
              <div class='ingredients'>
                <select class="ingredients_ajout select_ingredient_nom" type="text" name="ingredients_ajout" onchange="change_valeur(this.parentElement)" >
-               <input class="qt_ajout select_ingredient_qt" type="text" name="qt_ajout" placeholder="Quantité">
+               <input class="qt_ajout select_ingredient_qt input number" type="text" name="qt_ajout" placeholder="Quantité">
                <label class="unite_ajout" for="ingredients_ajout">int</label>
                <img src="api/ajout_recette/moins.png" alt="moins" class="moins_ingredient" height="15px" width="15px" onclick="supp_div(this.parentElement)">
              </div>
@@ -95,12 +95,12 @@
 
           <div>
              <label for="tpsPrep_ajout">Mmmm, ça va me prendre combien de temps cette histoire ? </label>
-             <input class="tpsPrep_ajout" type="text" name="tpsPrep_ajout" placeholder="Temps de préparation (en min)">
+             <input class="tpsPrep_ajout input number" type="text" name="tpsPrep_ajout" placeholder="Temps de préparation (en min)">
           </div>
 
           <div>
              <label for="tpsCui_ajout">Et combien de cuisson ? </label>
-             <input class="tpsCui_ajout" type="text" name="tpsCui_ajout" placeholder="Temps de cuisson (en min)">
+             <input class="tpsCui_ajout input number" type="text" name="tpsCui_ajout" placeholder="Temps de cuisson (en min)">
          </div>
 
            <label for="region_div">Elle vient d'où cette recette ? </label>
@@ -113,7 +113,7 @@
            <label for="étapes">Les étapes !</label>
            <div id="étapes">
              <label id ="num_etape" for="recette_ajout">1</label>
-             <input class="etape_ajout" type="text" name="etape_ajout" placeholder="Description de l'étape">
+             <input class="etape_ajout input" type="text" name="etape_ajout" placeholder="Description de l'étape">
            </div>
           <img src="api/ajout_recette/plus.png" alt="plus" id="plus_etape" height="15px" width="15px">
 
@@ -145,17 +145,17 @@
 
           <div>
              <label for="resume_ajout">Résume ta recette en quelques mots : </label>
-             <input class="resume_ajout" type="text" name="resume_ajout" placeholder="Donne nous envie !">
+             <input class="resume_ajout input" type="text" name="resume_ajout" placeholder="Donne nous envie !">
           </div>
 
           <div>
              <label for="img_ajout">Avec une image, ça donne toujours plus envie : </label>
-             <input class="img_ajout" type="text" name="img_ajout" placeholder="Ta photo">
+             <input class="img_ajout input" type="text" name="img_ajout" placeholder="Ta photo">
           </div>
 
           <div>
              <label for="pseudo_ajout">Signe ton oeuvre par ton pseudo : </label>
-             <input class="pseudo_ajout" type="text" name="pseudo_ajout" placeholder="Un petit nom">
+             <input class="pseudo_ajout input" type="text" name="pseudo_ajout" placeholder="Un petit nom">
           </div>
 
            <div>

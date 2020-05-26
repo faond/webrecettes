@@ -31,11 +31,12 @@ function test_formulaire_plein(){
   var class_qt = document.getElementsByClassName("qt_ajout");
   let ingredients_qt =[];
   remplir_tableau(ingredients_qt, class_qt);
+  comprend["quantite"]=ingredients_qt;
 
   var class_unite = document.getElementsByClassName("unite_ajout");
   let ingredients_unite =[];
   remplir_tableau(ingredients_unite, class_unite);
-  comprend["quantite"]=ingredients_qt;
+
 
 
   var class_matos_exist = document.getElementsByClassName("select_matos");
@@ -102,11 +103,11 @@ function test_formulaire_plein(){
   params["cout_ajout"] = document.querySelector(".cout_ajout").value;
   params["resume_ajout"] = document.querySelector(".resume_ajout").value;
   params["date_ajout"] = document.querySelector(".date_ajout").value;
-  //params["ingredients_ajout"] = ingredients_libelle;
-  //params["qt_ajout"] = ingredients_qt;
-  //params["unite_ajout"] = ingredients_unite;
-  //params["matos_ajout"] = materiel;
-
+  params["ingredients_ajout"] = ingredients_exist;
+  params["qt_ajout"] = ingredients_qt;
+  params["unite_ajout"] = ingredients_unite;
+  params["matos_ajout"] = materiel_nv;
+  console.log(params);
 
   for (const property in params) {
     if(Array.isArray(params[property])==false){
@@ -115,25 +116,35 @@ function test_formulaire_plein(){
     else{
       for (const dedans in params[property]){
         // A REFAIRE POUR LES VERIFS!!!!!!
-        // if(params[property] == ingredients_libelle){
-        //   verif_info_tabl(class_ingredient, dedans);
-        // }
-        // if(params[property] == ingredients_qt){
-        //   verif_info_tabl(class_qt, dedans);
-        // }
-        // if(params[property] == ingredients_unite){
-        //   verif_info_tabl(class_unite, dedans);
-        // }
-        // else if(params[property] == materiel){
-        //   verif_info_tabl(class_matos, dedans);
-        // }
+        if(params[property] == ingredients_exist){
+          verif_info_tabl(class_ingredient_select, dedans);
+        }
+        if(params[property] == ingredients_qt){
+          verif_info_tabl(class_qt, dedans);
+        }
+        if(params[property] == ingredients_unite){
+          verif_info_tabl(class_unite, dedans);
+        }
+        else if(params[property] == materiel_nv){
+          verif_info_tabl(class_matos_nv, dedans);
+        }
         if(params[property] == etapes){
           verif_info_tabl(class_etape, dedans);
         }
 
       }
     }
+  }
 
+  for (let i=0; i<comprend["quantite"].length;i++){
+    if(isNaN(comprend["quantite"][i])==true){
+        console.log(comprend["quantite"][i]);
+        document.getElementsByClassName("qt_ajout")[i].style = "color: rgba(211, 96, 100, 5.7)";
+        ready=false;
+      }
+      else{
+        document.getElementsByClassName("qt_ajout")[i].style = "color: none";
+      }
   }
   console.log("ready",ready);
   if(ready==false){
@@ -356,8 +367,9 @@ const envoi = async function(){
                   console.log("Requiert posté: ", response);
                 });
             }
-
+  window.location.reload()
   }
+
 }
 
 const remplir_tableau = (tableau, class_tabl) => {
@@ -379,7 +391,21 @@ const verif_info = (params, property) => {
   }
   else{
     if(document.querySelector(`.${property}`)!=null){
-      document.querySelector(`.${property}`).style = "border-color: none";
+      console.log(document.querySelector(`.${property}`));
+      if(document.querySelector(`.${property}`).classList[2]=="number"){
+        console.log("ici");
+        if(isNaN(document.querySelector(`.${property}`).value)==true){
+            console.log('pas un entier');
+            document.querySelector(`.${property}`).style = "color: rgba(211, 96, 100, 5.7)";
+            ready=false;
+          }
+          else{
+            document.querySelector(`.${property}`).style = "color: none";
+          }
+      }
+      else{
+        document.querySelector(`.${property}`).style = "border-color: none";
+      }
 
     }
     else{
