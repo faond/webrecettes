@@ -13,9 +13,9 @@
     if(in_array($file_extension, $extensions_autorisees)){ //on check l'extension
           if(move_uploaded_file($file_tmp_name,$file_dest)){
             //création de la requete sql
-            $sql = "INSERT INTO projets2_photo(id_photo, cheminPhoto, id_recette, pseudo) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO projets2_photo(id_photo, cheminPhoto, id_recette) VALUES (?,?,?)";
             $resultats  = $connexion->prepare($sql);
-            $resultats->execute(array('5', $file_name, '1', 'Erwann'));
+            $resultats->execute(array('32', $file_name, '1'));
             echo "votre fichier a bien été envoyé";
           }
         }
