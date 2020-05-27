@@ -7,36 +7,35 @@ Document.prototype.ready = callback => {
 		});
 	}
 };
-const affichage_etapes = (data, choix = 0) => {
+const affichage_recettes = (data) => {
 	let div_recette = document.getElementById('section_recette');
-	div_recette.innerHTML= "";
-	for (let i=0; i<data.length-1; i++){ //J'ai rajouté un -1 pour enlever un message d'erreur. Why ? idk
-		let message;
-		let paragraphe = document.createElement("p");
-		paragraphe.classList.add("div-recette"); 
-		
-		let image = document.createElement('div'); 
-		image.classList.add("image-recette"); 
-		image.style.backgroundImage = 'url(../api/images/'+data[i].cheminPhoto+')';
+	let titre = document.getElementById('titre'); 
+	let type = document.getElementById('type');
+	let photo = document.getElementById('photo'); 
+	let nbPersonnes = document.getElementById('nbPersonnes'); 
+	let difficulte = document.getElementById('difficulte'); 
+	let budget = document.getElementById('budget'); 
+	let tpsPrepa = document.getElementById('tpsPrepa'); 
+	let tpsCuisson = document.getElementById('tpsCuisson'); 
+	let ingredients = document.getElementById('ingredients'); 
+	let etapes = document.getElementById('etapes'); 
+	let pseudo = document.getElementById('pseudo'); 
 
-		message ="<h1 id='titre-recette'>"+data[i].intitule + "</h1><h2 id='type-recette'>"
-			+ data[i].typeRecette + "</h2><h2 id='description-recette'>"+data[i].resume+"</h2><br/>";
-		
-		
-		if(choix ==1){
-			message += " - " + data[i].description + "<br/>";
-		}		
-		i++;
-		while(data[i].numEtape != 1 && i<data.length-1){
-			if(choix == 1){
-				message += " - " + data[i].description + "<br/>";
-			}			
-			i++;
-		}
-		
-		paragraphe.innerHTML = message;
-		paragraphe.appendChild(image); 
-		div_recette.appendChild(paragraphe);
+	titre.innerHTML= data[0].intitule; 
+	type.innerHTML = data[0].typeRecette;	
+	photo.style.backgroundImage = 'url(../api/images/'+data[0].cheminPhoto+')';
+	nbPersonnes.innerHTML = data[0].nbPersonne;
+	difficulte.innerHTML = data[0].difficulte;
+	budget.innerHTML = data[0].typeCout;
+	tpsPrepa.innerHTML = data[0].tpsPreparation;
+	tpsCuisson.innerHTML = data[0].tpsCuisson;
+	pseudo.innerHTML = data[0].pseudo;
+
+	for (let i=0; i<data.length; i++){
+			let etape = document.createElement('h2');
+			etape.classList.add('etape'); 
+			etape.innerHTML= data[i].description
+			etapes.appendChild(etape); 
 	}	
 }
 
@@ -48,23 +47,7 @@ document.ready( () => {
 	var id = urlcourante.split('id=')[1]; 
 	id = decodeURI(id);
 
-	// const espace = /%20/gi;
-	// const circonflexeA = /%C3%A2/gi;
-	// const accentAiguE = /%C3%A9/gi;
-	// const accentGraveE = /%%C3%A8/gi;
-	// const accentGraveA = /%C3%A0/gi;
-	// const CCedille = /%C3%A7/gi;
-	// const accentGraveU = /%C3%B9/gi;
-
-	// id = id.replace(espace," ");
-	// id = id.replace(circonflexeA,"â");
-	// id = id.replace(accentAiguE,"é");
-	// id = id.replace(accentGraveE,"è");
-	// id = id.replace(accentGraveA,"à");
-	// id = id.replace(CCedille,"ç");
-	// id = id.replace(accentGraveU,"ù");
-
-    console.log(id);
+	console.log(id);
 
     let params = {};
 	params.type = "";
@@ -77,7 +60,7 @@ document.ready( () => {
 	}).then(response => response.json())
 	.then( data => {
 		console.log(data);
-		affichage_etapes(data,1); 
+		affichage_recettes(data); 
 	});
 });
     
