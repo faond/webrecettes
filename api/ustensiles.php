@@ -10,9 +10,9 @@ $method=strtolower($_SERVER['REQUEST_METHOD']);
 if ($method == 'get') { 
     $nomRecette = $_GET['nomRecette'];
 
-    $sql = "SELECT projets2_ingredient.libelle, projets2_comprend.quantite, projets2_ingredient.unite
-    FROM projets2_ingredient JOIN projets2_comprend on projets2_ingredient.id_ingredient = projets2_comprend.id_ingredient
-    JOIN projets2_recette ON projets2_recette.id_recette = projets2_comprend.id_recette
+    $sql = "SELECT projets2_ustensile.libelle
+    FROM projets2_ustensile JOIN projets2_requiert on projets2_ustensile.id_ustensile = projets2_requiert.id_ustensile
+    JOIN projets2_recette ON projets2_recette.id_recette = projets2_requiert.id_recette
     WHERE projets2_recette.intitule LIKE :intitule"; 
 
 $response[':intitule']=$nomRecette; 

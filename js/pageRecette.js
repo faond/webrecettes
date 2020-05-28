@@ -30,9 +30,13 @@ const affichage_recette = (data) => {
 	pseudo.innerHTML = data[0].pseudo;
 
 	for (let i=0; i<data.length; i++){
-			let etape = document.createElement('h2');
+			let numEtape = document.createElement('h3');
+			let num = i+1; 
+			numEtape.innerHTML = "Etape " + num; 
+			let etape = document.createElement('div');
 			etape.classList.add('etape'); 
-			etape.innerHTML= data[i].description
+			etape.innerHTML= data[i].description; 
+			etapes.appendChild(numEtape); 
 			etapes.appendChild(etape); 
 	}	
 }
@@ -43,12 +47,12 @@ const affichageIngredients = (data) =>{
 
 	for (let i=0; i<data.length; i++){
 			let ingredient = document.createElement('div');
-			ingredient.classList.add('ingredient'); 
+			ingredient.classList.add('ingredient_detail'); 
 			ingredient.innerHTML= data[i].quantite + ' '; 
 			let nomRecette =  data[i].libelle.toLowerCase(); 
 			if(data[i].unite != 'int'){
 				ingredient.innerHTML+= data[i].unite; 
-				if(nomRecette[0]=='a' || nomRecette[0]=='e' || nomRecette[0]=='e' || nomRecette=='o' || nomRecette[0]=='u' || nomRecette[0]=='y' || nomRecette[0]=='h'){
+				if(nomRecette[0]=='a' || nomRecette[0]=='e' || nomRecette[0]=='i' || nomRecette[0]=='o' || nomRecette[0]=='u' || nomRecette[0]=='y' || nomRecette[0]=='h'){
 					ingredient.innerHTML += " d' "; 
 				} 
 				else{
@@ -56,12 +60,24 @@ const affichageIngredients = (data) =>{
 				}
 			}
 			else{
-				if(data[i].quantite>1){
+				if(data[i].quantite>1 &&nomRecette[nomRecette.length-1]!='s'){
 					nomRecette+='s'; 
 				}
 			} 
 			ingredient.innerHTML+= nomRecette ;  
 			ingredients.appendChild(ingredient); 
+	}
+}
+
+const affichageUstensiles = (data) =>{
+	
+	let ustensiles = document.getElementById('ustensiles'); 
+
+	for (let i=0; i<data.length; i++){
+			let ustensile = document.createElement('div');
+			ustensile.classList.add('ustensile_detail'); 
+			ustensile.innerHTML= data[i].libelle;   
+			ustensiles.appendChild(ustensile); 
 	}
 }
 
@@ -85,21 +101,28 @@ document.ready( () => {
 		method: 'GET'
 	}).then(response => response.json())
 	.then( data => {
-		console.log(data);
-		console.log("coucou"); 
+		console.log('Infos recette', data);
 		affichage_recette(data); 
 	});
-	console.log("coucou"); 
-	let params_ingredients = {};
-	params_ingredients.nomRecette = id;
+
 	let url_ingredients = new URL("../api/ingredients.php", window.location.href);
-	url_ingredients.search = new URLSearchParams(params_ingredients);
+	url_ingredients.search = new URLSearchParams(params);
 	fetch(url_ingredients, {
 		method: 'GET'
 	}).then(response => response.json())
 	.then( data => {
-		console.log(data);
+		console.log('ingredients', data);
 		affichageIngredients(data); 
+	});
+
+	let url_ustensiles = new URL("../api/ustensiles.php", window.location.href);
+	url_ustensiles.search = new URLSearchParams(params);
+	fetch(url_ustensiles, {
+		method: 'GET'
+	}).then(response => response.json())
+	.then( data => {
+		console.log('ustensiles', data);
+		affichageUstensiles(data); 
 	});
 
 });
