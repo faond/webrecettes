@@ -12,6 +12,7 @@ const affichage_recette = (data) => {
 	let type = document.getElementById('type');
 	let photo = document.getElementById('photo'); 
 	let nbPersonnes = document.getElementById('nbPersonnes'); 
+	let personneTitre = document.getElementById('personne-titre');
 	let difficulte = document.getElementById('difficulte'); 
 	let budget = document.getElementById('budget'); 
 	let tpsPrepa = document.getElementById('tpsPrepa'); 
@@ -22,11 +23,29 @@ const affichage_recette = (data) => {
 	titre.innerHTML= data[0].intitule; 
 	type.innerHTML = data[0].typeRecette;	
 	photo.style.backgroundImage = 'url(../api/images/'+data[0].cheminPhoto+')';
+	let personne = "Personne"; 
+	if(data[0].nbPersonne>1){
+		personne+='s'; 
+	}
+	personneTitre.innerHTML = personne; 
 	nbPersonnes.innerHTML = data[0].nbPersonne;
-	difficulte.innerHTML = data[0].difficulte;
+
+	let diffNum = data[0].difficulte; 
+	let diffText; 
+
+	if(diffNum ==1){
+		diffText = 'Facile'; 
+	}
+	else if(diffNum ==2){
+		diffText = 'Facile'; 
+	}
+	else{
+		diffText='Difficile'; 
+	}	
+	difficulte.innerHTML = diffText;
 	budget.innerHTML = data[0].typeCout;
-	tpsPrepa.innerHTML = data[0].tpsPreparation;
-	tpsCuisson.innerHTML = data[0].tpsCuisson;
+	tpsPrepa.innerHTML = data[0].tpsPreparation + ' min';
+	tpsCuisson.innerHTML = data[0].tpsCuisson + ' min';
 	pseudo.innerHTML = data[0].pseudo;
 
 	for (let i=0; i<data.length; i++){
