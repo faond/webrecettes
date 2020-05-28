@@ -7,8 +7,7 @@ Document.prototype.ready = callback => {
 		});
 	}
 };
-const affichage_recettes = (data) => {
-	let div_recette = document.getElementById('section_recette');
+const affichage_recette = (data) => {
 	let titre = document.getElementById('titre'); 
 	let type = document.getElementById('type');
 	let photo = document.getElementById('photo'); 
@@ -17,7 +16,6 @@ const affichage_recettes = (data) => {
 	let budget = document.getElementById('budget'); 
 	let tpsPrepa = document.getElementById('tpsPrepa'); 
 	let tpsCuisson = document.getElementById('tpsCuisson'); 
-	let ingredients = document.getElementById('ingredients'); 
 	let etapes = document.getElementById('etapes'); 
 	let pseudo = document.getElementById('pseudo'); 
 
@@ -37,6 +35,34 @@ const affichage_recettes = (data) => {
 			etape.innerHTML= data[i].description
 			etapes.appendChild(etape); 
 	}	
+}
+
+const affichageIngredients = (data) =>{
+	
+	let ingredients = document.getElementById('ingredients'); 
+
+	for (let i=0; i<data.length; i++){
+			let ingredient = document.createElement('div');
+			ingredient.classList.add('ingredient'); 
+			ingredient.innerHTML= data[i].quantite + ' '; 
+			let nomRecette =  data[i].libelle.toLowerCase(); 
+			if(data[i].unite != 'int'){
+				ingredient.innerHTML+= data[i].unite; 
+				if(nomRecette[0]=='a' || nomRecette[0]=='e' || nomRecette[0]=='e' || nomRecette=='o' || nomRecette[0]=='u' || nomRecette[0]=='y' || nomRecette[0]=='h'){
+					ingredient.innerHTML += " d' "; 
+				} 
+				else{
+					ingredient.innerHTML += ' de '; 
+				}
+			}
+			else{
+				if(data[i].quantite>1){
+					nomRecette+='s'; 
+				}
+			} 
+			ingredient.innerHTML+= nomRecette ;  
+			ingredients.appendChild(ingredient); 
+	}
 }
 
 document.ready( () => {
@@ -60,7 +86,21 @@ document.ready( () => {
 	}).then(response => response.json())
 	.then( data => {
 		console.log(data);
-		affichage_recettes(data); 
+		console.log("coucou"); 
+		affichage_recette(data); 
 	});
+	console.log("coucou"); 
+	let params_ingredients = {};
+	params_ingredients.nomRecette = id;
+	let url_ingredients = new URL("../api/ingredients.php", window.location.href);
+	url_ingredients.search = new URLSearchParams(params_ingredients);
+	fetch(url_ingredients, {
+		method: 'GET'
+	}).then(response => response.json())
+	.then( data => {
+		console.log(data);
+		affichageIngredients(data); 
+	});
+
 });
     

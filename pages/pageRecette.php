@@ -10,8 +10,8 @@
   <body> 
     <h1 id = "titre"></h1>
     <h2 id = "type"></h2>
-    <div id = photo class="image-recette"></div>
     <div id="section_recette">
+      <div id = photo class="image-recette"></div>
       <div id = "details">
       <div id = "nbPersonnes"></div>
         <div id = "difficulte"></div>
