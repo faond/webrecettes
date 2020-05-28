@@ -1,7 +1,7 @@
 const affichage_etapes = (data, choix = 0) => {
 	let div_recette = document.getElementById('section_recette');
 	div_recette.innerHTML= "";
-	for (let i=0; i<data.length; i++){ //J'ai rajouté un -1 pour enlever un message d'erreur. Why ? idk
+	for (let i=0; i<data.length-1; i++){ //J'ai rajouté un -1 pour enlever un message d'erreur. Why ? idk
 		let message;
 		let a = document.createElement("a");
 		a.classList.add("div-recette"); 
@@ -15,7 +15,19 @@ const affichage_etapes = (data, choix = 0) => {
 		
 		message ="<h1 id='titre-recette'>"+data[i].intitule + "</h1><h2 id='type-recette'>"
 			+ data[i].typeRecette + "</h2><h2 id='description-recette'>"+data[i].resume+"</h2><br/>";
-	
+		
+		
+		if(choix ==1){
+			message += " - " + data[i].description + "<br/>";
+		}		
+		i++;
+		while(data[i].numEtape != 1 && i<data.length-1){
+			if(choix == 1){
+				message += " - " + data[i].description + "<br/>";
+			}			
+			i++;
+		}
+		
 		a.innerHTML = message;
 		a.appendChild(image); 
 		div_recette.appendChild(a);
