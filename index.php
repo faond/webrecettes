@@ -15,16 +15,7 @@
           <div class="menu_btn">
               <div class="menu_burger"></div>
           </div>
-          <nav id="menu" class="styles_menu">
-            <ul>
-              <a id="entree" href="#"><li>Nos entrées</li></a>
-              <a id="plat" href="#"><li>Nos plats</li></a>
-              <a id= "dessert" href="#"><li>Nos desserts</li></a>
-              <a id="boisson" href="#"><li>Nos boissons</li></a>
-              <a id="mesRecettes" href="pages/mesRecettes.php"><li>Mes recettes</li></a>
-              <a id="uploadImage" href="pages/uploadImage.php"><li>Ajouter une image</li></a>
-            </ul>
-          </nav>
+
           </div>
         <h1>Recette de Luxe</h1>
         <form class="formulaire">
@@ -158,11 +149,6 @@
           </div>
 
           <div>
-             <label for="img_ajout">Avec une image, ça donne toujours plus envie : </label>
-             <input class="img_ajout input" type="text" name="img_ajout" placeholder="Ta photo">
-          </div>
-
-          <div>
              <label for="pseudo_ajout">Signe ton oeuvre par ton pseudo : </label>
              <input class="pseudo_ajout input" type="text" name="pseudo_ajout" placeholder="Un petit nom">
           </div>
@@ -171,6 +157,7 @@
              <label for="date">Date de ton cadeau pour notre super site : </label>
              <input id="date" class="date_ajout" name="begin" min="2020-05-01" class="bouton_date" value="2020-01-01" >
            </div>
+           <label for="img_ajout">Tu peux ajouter une jolie image dans la partie Menu</label>
          </form>
          <input class="btn_sortir" type="button" value="Retour - Ne pas ajouter de recette" onclick="retour()">
          <input class="btn_envoi" type="button" value="Envoyez la recette" onclick="envoi()">

@@ -1,7 +1,7 @@
   /*background: #272727;*/
 body{
   /* margin: 1%; */
-  position:relative; 
+  position:relative;
 }
 
 header{
@@ -106,6 +106,7 @@ header{
 .styles_menu.open {
   display: block;
   animation: fadeIn 0.2s ease-in-out forwards;
+
 }
 
 .menu_btn.open .menu_burger::before {
@@ -121,7 +122,7 @@ header{
   opacity: 0;
   font-family: 'Quicksand', sans-serif;
   color: white;
-  z-index: 1;
+  z-index: -1;
   margin-top: 25vh;
 }
 
@@ -178,14 +179,14 @@ a:hover:after {
 /***************Banderolle recherche********************/
 .formulaire{
   width:70%;
-  margin-left: 50px; 
-  margin-bottom:40px; 
+  margin-left: 50px;
+  margin-bottom:40px;
 }
 #nomRecette{
-  border-radius : 25px; 
-  padding: 5px; 
-  border : 2px solid #efefef; 
-  width: 80%; 
+  border-radius : 25px;
+  padding: 5px;
+  border : 2px solid #efefef;
+  width: 80%;
 }
 
 #questions-form{
@@ -195,24 +196,24 @@ a:hover:after {
 #questionnaire-header{
   width: 100%;
   background-color: white;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   align-content: center;
 }
 .liste-choix{
   border-radius: 20px;
-  border : 2px solid #efefef; 
-  padding : 5px; 
+  border : 2px solid #efefef;
+  padding : 5px;
   width: 150px;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
 #bouton_recette{
-  border-radius : 25px; 
-  padding: 5px; 
+  border-radius : 25px;
+  padding: 5px;
   padding-right:20px;
   padding-left:20px;
-  background-color:#eeeceb; 
+  background-color:#eeeceb;
 }
 
 #plus{
@@ -221,7 +222,7 @@ a:hover:after {
   height:30px;
   /* border : 2px solid #efefef;  */
   background-color:white;
-  margin-left : 10px; 
+  margin-left : 10px;
 }
 
 .invisible{
