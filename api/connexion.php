@@ -1,8 +1,8 @@
 <?php
 
   $user = "root";
-  //$pass = "";
-  $pass = "root";
+  $pass = "";
+  //$pass = "root";
 
   try{
     $connexion = new PDO('mysql:host=localhost;dbname=_projets2_bdd;port=3306', $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
