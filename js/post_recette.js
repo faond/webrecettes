@@ -77,7 +77,6 @@ function test_formulaire_plein(){
   ustentile_recette["id_recup"] = [];
 
 
-
   let region =  document.querySelector(".region_ajout");
   region_recette["id"] = 'id_region';
   region_recette["nom"] = 'nom';
@@ -93,7 +92,7 @@ function test_formulaire_plein(){
 
 
   param_pseudo["pseudo_ajout"] = document.querySelector(".pseudo_ajout").value;
-
+  verif_info(param_pseudo, "pseudo_ajout");
 
   params["nom_ajout"] = document.querySelector(".nom_ajout").value;
   params["nb_ajout"] = document.querySelector("#nb_ajout").value;
@@ -103,42 +102,18 @@ function test_formulaire_plein(){
   params["cout_ajout"] = document.querySelector(".cout_ajout").value;
   params["resume_ajout"] = document.querySelector(".resume_ajout").value;
   params["date_ajout"] = document.querySelector(".date_ajout").value;
-  params["ingredients_ajout"] = ingredients_exist;
-  params["qt_ajout"] = ingredients_qt;
-  params["unite_ajout"] = ingredients_unite;
-  params["matos_ajout"] = materiel_nv;
+  // params["qt_ajout"] = ingredients_qt;
+  // params["unite_ajout"] = ingredients_unite;
+  // params["matos_ajout"] = materiel_nv;
   console.log(params);
 
-  for (const property in params) {
-    if(Array.isArray(params[property])==false){
-      verif_info(params, property);
-    }
-    else{
-      for (const dedans in params[property]){
-        // A REFAIRE POUR LES VERIFS!!!!!!
-        if(params[property] == ingredients_exist){
-          verif_info_tabl(class_ingredient_select, dedans);
-        }
-        if(params[property] == ingredients_qt){
-          verif_info_tabl(class_qt, dedans);
-        }
-        if(params[property] == ingredients_unite){
-          verif_info_tabl(class_unite, dedans);
-        }
-        else if(params[property] == materiel_nv){
-          verif_info_tabl(class_matos_nv, dedans);
-        }
-        if(params[property] == etapes){
-          verif_info_tabl(class_etape, dedans);
-        }
-
-      }
-    }
-  }
+  verfication_params(params);
+  verfication_tableau(ingredients_recette["formulaire"], class_ingredient_select);
+  verfication_tableau(ustentile_recette["formulaire"], class_matos_exist);
+  verfication_tableau(comprend["quantite"], class_qt);
 
   for (let i=0; i<comprend["quantite"].length;i++){
     if(isNaN(comprend["quantite"][i])==true){
-        console.log(comprend["quantite"][i]);
         document.getElementsByClassName("qt_ajout")[i].style = "color: rgba(211, 96, 100, 5.7)";
         ready=false;
       }
@@ -151,12 +126,42 @@ function test_formulaire_plein(){
     //msg_erreur();
     return false;
   }
-
   return true;
-
-
-
 }
+
+
+const verfication_params = (params) =>{
+
+  for (const property in params) {
+      verif_info(params, property);
+    }
+}
+
+const verfication_tableau = (params, class_nom) =>{
+  for (let dedans=0; dedans<params.length; dedans++){
+    verif_info_tabl(class_nom, dedans);
+  }
+}
+    // A REFAIRE POUR LES VERIFS!!!!!!
+
+    // if(params[property] == ingredients_qt){
+    //   verif_info_tabl(class_qt, dedans);
+    // }
+    // if(params[property] == ingredients_unite){
+    //   verif_info_tabl(class_unite, dedans);
+    // }
+    // else if(params[property] == materiel_nv){
+    //   verif_info_tabl(class_matos_nv, dedans);
+    // }
+    // if(params[property] == etapes){
+    //   verif_info_tabl(class_etape, dedans);
+    // }
+
+
+
+
+
+
 //
 // const check_id = async function(tableau, params){
 //   if(tableau["formulaire"]==undefined){
@@ -415,13 +420,14 @@ const verif_info = (params, property) => {
 }
 
 const verif_info_tabl = (class_nom, dedans) => {
+  console.log(class_nom[dedans].value);
   if(class_nom[dedans].value==""){
     class_nom[dedans].style = "border-color: rgba(211, 96, 100, 0.7)";
     ready = false;
-    }
+  }
   else{
 
-    if(class_nom[dedans].classList == "ingredients_ajout" || class_nom[dedans].classList == "matos_ajout"){
+    if(class_nom[dedans].classList[1] == "select_ingredient_nom" || class_nom[dedans].classList[1] == "select_matos"){
       if(compte_occurence(class_nom, class_nom[dedans].value).length > 1){
         for(let l=1 ; l<compte_occurence(class_nom, class_nom[dedans].value).length ; l++){
           class_nom[compte_occurence(class_nom, class_nom[dedans].value)[l]].style = "border-color: rgba(21, 96, 100, 0.7)";
@@ -432,9 +438,11 @@ const verif_info_tabl = (class_nom, dedans) => {
         class_nom[dedans].style = "border-color: none";
       }
     }
-    else if(class_nom[dedans].classList != "ingredients_ajout" || class_nom[dedans].classList != "matos_ajout"){
-      class_nom[dedans].style = "border-color: none";
-    }
+    console.log(class_nom[dedans]);
+    class_nom[dedans].style = "border-color: none";
+    // else if(class_nom[dedans].classList != "ingredients_ajout" || class_nom[dedans].classList != "matos_ajout"){
+    //   class_nom[dedans].style = "border-color: none";
+    // }
 
   }
 }
