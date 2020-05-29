@@ -109,43 +109,43 @@ function test_formulaire_plein(){
   params["matos_ajout"] = materiel_nv;
   console.log(params);
 
-  for (const property in params) {
-    if(Array.isArray(params[property])==false){
-      verif_info(params, property);
-    }
-    else{
-      for (const dedans in params[property]){
-        // A REFAIRE POUR LES VERIFS!!!!!!
-        if(params[property] == ingredients_exist){
-          verif_info_tabl(class_ingredient_select, dedans);
-        }
-        if(params[property] == ingredients_qt){
-          verif_info_tabl(class_qt, dedans);
-        }
-        if(params[property] == ingredients_unite){
-          verif_info_tabl(class_unite, dedans);
-        }
-        else if(params[property] == materiel_nv){
-          verif_info_tabl(class_matos_nv, dedans);
-        }
-        if(params[property] == etapes){
-          verif_info_tabl(class_etape, dedans);
-        }
-
-      }
-    }
-  }
-
-  for (let i=0; i<comprend["quantite"].length;i++){
-    if(isNaN(comprend["quantite"][i])==true){
-        console.log(comprend["quantite"][i]);
-        document.getElementsByClassName("qt_ajout")[i].style = "color: rgba(211, 96, 100, 5.7)";
-        ready=false;
-      }
-      else{
-        document.getElementsByClassName("qt_ajout")[i].style = "color: none";
-      }
-  }
+  // for (const property in params) {
+  //   if(Array.isArray(params[property])==false){
+  //     verif_info(params, property);
+  //   }
+  //   else{
+  //     for (const dedans in params[property]){
+  //       // A REFAIRE POUR LES VERIFS!!!!!!
+  //       if(params[property] == ingredients_exist){
+  //         verif_info_tabl(class_ingredient_select, dedans);
+  //       }
+  //       if(params[property] == ingredients_qt){
+  //         verif_info_tabl(class_qt, dedans);
+  //       }
+  //       if(params[property] == ingredients_unite){
+  //         verif_info_tabl(class_unite, dedans);
+  //       }
+  //       else if(params[property] == materiel_nv){
+  //         verif_info_tabl(class_matos_nv, dedans);
+  //       }
+  //       if(params[property] == etapes){
+  //         verif_info_tabl(class_etape, dedans);
+  //       }
+  //
+  //     }
+  //   }
+  // }
+  //
+  // for (let i=0; i<comprend["quantite"].length;i++){
+  //   if(isNaN(comprend["quantite"][i])==true){
+  //       console.log(comprend["quantite"][i]);
+  //       document.getElementsByClassName("qt_ajout")[i].style = "color: rgba(211, 96, 100, 5.7)";
+  //       ready=false;
+  //     }
+  //     else{
+  //       document.getElementsByClassName("qt_ajout")[i].style = "color: none";
+  //     }
+  // }
   console.log("ready",ready);
   if(ready==false){
     //msg_erreur();
@@ -367,6 +367,23 @@ const envoi = async function(){
                   console.log("Requiert posté: ", response);
                 });
             }
+
+            // 
+            // //Ajouter l'image de la recette
+            // let photo = [];
+            // photo['image'] = document.getElementById('uploadImage').value;
+            // photo['id_recette'] = id_recup;
+            // console.log("BONJOUR");
+            // console.log(photo);
+            // await fetch("api/ajout_recette/upload.php", {
+            //   method : 'POST',
+            //   body: JSON.stringify(photo)
+            //   })
+            //   .then( response => response.json() )
+            //   .then( response => {
+            //   console.log("Requiert posté: ", response);
+            // });
+
   window.location.reload()
   }
 

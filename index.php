@@ -17,12 +17,12 @@
           </div>
           <nav id="menu" class="styles_menu">
             <ul>
-              <a id="entree" href="#"><li>Nos entrées</li></a>
-              <a id="plat" href="#"><li>Nos plats</li></a>
-              <a id= "dessert" href="#"><li>Nos desserts</li></a>
-              <a id="boisson" href="#"><li>Nos boissons</li></a>
-              <a id="mesRecettes" href="pages/mesRecettes.php"><li>Mes recettes</li></a>
-              <a id="uploadImage" href="pages/uploadImage.php"><li>Ajouter une image</li></a>
+              <a id="entree" href="#" class="a_menu"><li>Nos entrées</li></a>
+              <a id="plat" href="#" class="a_menu"><li>Nos plats</li></a>
+              <a id= "dessert" href="#" class="a_menu"><li>Nos desserts</li></a>
+              <a id="boisson" href="#" class="a_menu"><li>Nos boissons</li></a>
+              <a id="mesRecettes" href="pages/mesRecettes.php" class="a_menu"><li>Mes recettes</li></a>
+              <a id="galerieImage" href="pages/galerie.php" class="a_menu"><li>La galerie</li></a>
             </ul>
           </nav>
           </div>
@@ -63,9 +63,9 @@
       <!-- Début questionnaire -->
       <div id = "questionnaire-header">
 
-       <div id ="formulaire_ajout">
+       <div id ="formulaire_ajout" >
          <h2>Ajoute ta recette !</h2>
-         <form class="form_ajout">
+         <form class="form_ajout" enctype="multipart/form-data">
            <div>
              <label for="nom_ajout">Un p'tit nom pour ta recette : </label>
              <input class="nom_ajout input" type="text" name="nom_ajout" placeholder="Nom de la recette">
@@ -155,11 +155,6 @@
           <div>
              <label for="resume_ajout">Résume ta recette en quelques mots : </label>
              <input class="resume_ajout input" type="text" name="resume_ajout" placeholder="Donne nous envie !">
-          </div>
-
-          <div>
-             <label for="img_ajout">Avec une image, ça donne toujours plus envie : </label>
-             <input class="img_ajout input" type="text" name="img_ajout" placeholder="Ta photo">
           </div>
 
           <div>

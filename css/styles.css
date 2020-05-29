@@ -1,8 +1,10 @@
   /*background: #272727;*/
 body{
   /* margin: 1%; */
-  position:relative; 
+  position:relative;
 }
+
+
 
 header{
   width: 100%;
@@ -22,7 +24,7 @@ h1{
 }
 
 .main_container.flou{
-  filter: blur(2px);
+  filter: blur(25px);
 }
 
 header{
@@ -47,10 +49,9 @@ header{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
   cursor: pointer;
   width: 100%;
-  /* background-color: #272727; */
+  background-color: #272727;
 }
 
 .menu_btn {
@@ -122,7 +123,7 @@ header{
   font-family: 'Quicksand', sans-serif;
   color: white;
   z-index: 1;
-  margin-top: 25vh;
+  margin-top: 30vh;
 }
 
 .styles_menu.fadeOut{
@@ -135,12 +136,18 @@ header{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 90vh;
+  height: 60vh;
   width: 100%;
 }
 
 .styles_menu li{
   color: white;
+  font-weight: bolder;
+}
+
+.a_menu{
+  text-decoration: none;
+  color: black;
 }
 
 a{
@@ -148,19 +155,19 @@ a{
   color: black;
 }
 
-a:after {
+.a_menu:after {
   content: "";
   display: block;
   height: 2px; /*epaisseur du soulignement*/
   left: 50%;
   position: relative;
-  background: black;
+  background: white;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
   margin-top: 3%;
 }
 
-a:hover:after {
+.a_menu:hover:after {
   width: 100%;
   left: 0;
 }
@@ -172,20 +179,21 @@ a:hover:after {
   opacity: 1;
 }
 
+
 .slider.fadeBackground{
   animation: fadeBackground 10s ease-in-out;
 }
 /***************Banderolle recherche********************/
 .formulaire{
   width:70%;
-  margin-left: 50px; 
-  margin-bottom:40px; 
+  margin-left: 50px;
+  margin-bottom:40px;
 }
 #nomRecette{
-  border-radius : 25px; 
-  padding: 5px; 
-  border : 2px solid #efefef; 
-  width: 80%; 
+  border-radius : 25px;
+  padding: 5px;
+  border : 2px solid #efefef;
+  width: 80%;
 }
 
 #questions-form{
@@ -195,24 +203,24 @@ a:hover:after {
 #questionnaire-header{
   width: 100%;
   background-color: white;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   align-content: center;
 }
 .liste-choix{
   border-radius: 20px;
-  border : 2px solid #efefef; 
-  padding : 5px; 
+  border : 2px solid #efefef;
+  padding : 5px;
   width: 150px;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
 #bouton_recette{
-  border-radius : 25px; 
-  padding: 5px; 
+  border-radius : 25px;
+  padding: 5px;
   padding-right:20px;
   padding-left:20px;
-  background-color:#eeeceb; 
+  background-color:#eeeceb;
 }
 
 #plus{
@@ -221,7 +229,7 @@ a:hover:after {
   height:30px;
   /* border : 2px solid #efefef;  */
   background-color:white;
-  margin-left : 10px; 
+  margin-left : 10px;
 }
 
 .invisible{
@@ -290,12 +298,80 @@ header:hover .invisible
 .field.up{
   display: block;
 }
+/***************Galerie********************/
+
+
+.galerie_h1{
+  margin-top: 2%;
+  text-align: center;
+}
+
+.liste_galerie{
+  margin-top: 5%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.liste_galerie li{
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.liste_galerie li:hover{
+  transform: scale(1.1);
+}
+
+.liste_galerie li:before {
+  content: "";
+  display: block;
+  height: 2px; /*epaisseur du soulignement*/
+  left: 50%;
+  position: relative;
+  background-image: linear-gradient(to right top, #18191a, #2f3031, #484849, #626363, #7e7e7e);
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+  margin-top: 1%;
+}
+
+.liste_galerie li:hover:before {
+  width: 100%;
+  left: 0;
+}
+
+.galerie_container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+
+
+.div_image{
+  margin: 1%;
+}
+
+.image_galerie{
+  width: 300px;
+  height: 200px;
+  transition: 0.5s;
+}
+
+.image_galerie:hover{
+  transform: scale(1.1);
+}
+
+
 
 
 /***************Animation********************/
 @keyframes fadeIn {
   0%{
-    transform: translateX(35px);
+    transform: translateX(25px);
     opacity: 0;
     display: none;
   }
@@ -313,7 +389,7 @@ header:hover .invisible
     display: block;
   }
   100%{
-    transform: translateX(30px);
+    transform: translateX(20px);
     opacity: 0;
     display: none;
   }
