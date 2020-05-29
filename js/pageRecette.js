@@ -7,37 +7,97 @@ Document.prototype.ready = callback => {
 		});
 	}
 };
-const affichage_etapes = (data, choix = 0) => {
-	let div_recette = document.getElementById('section_recette');
-	div_recette.innerHTML= "";
-	for (let i=0; i<data.length-1; i++){ //J'ai rajouté un -1 pour enlever un message d'erreur. Why ? idk
-		let message;
-		let paragraphe = document.createElement("p");
-		paragraphe.classList.add("div-recette"); 
-		
-		let image = document.createElement('div'); 
-		image.classList.add("image-recette"); 
-		image.style.backgroundImage = 'url(../api/images/'+data[i].cheminPhoto+')';
+const affichage_recette = (data) => {
+	let titre = document.getElementById('titre'); 
+	let type = document.getElementById('type');
+	let photo = document.getElementById('photo'); 
+	let nbPersonnes = document.getElementById('nbPersonnes'); 
+	let personneTitre = document.getElementById('personne-titre');
+	let difficulte = document.getElementById('difficulte'); 
+	let budget = document.getElementById('budget'); 
+	let tpsPrepa = document.getElementById('tpsPrepa'); 
+	let tpsCuisson = document.getElementById('tpsCuisson'); 
+	let etapes = document.getElementById('etapes'); 
+	let pseudo = document.getElementById('pseudo'); 
 
-		message ="<h1 id='titre-recette'>"+data[i].intitule + "</h1><h2 id='type-recette'>"
-			+ data[i].typeRecette + "</h2><h2 id='description-recette'>"+data[i].resume+"</h2><br/>";
-		
-		
-		if(choix ==1){
-			message += " - " + data[i].description + "<br/>";
-		}		
-		i++;
-		while(data[i].numEtape != 1 && i<data.length-1){
-			if(choix == 1){
-				message += " - " + data[i].description + "<br/>";
-			}			
-			i++;
-		}
-		
-		paragraphe.innerHTML = message;
-		paragraphe.appendChild(image); 
-		div_recette.appendChild(paragraphe);
+	titre.innerHTML= data[0].intitule; 
+	type.innerHTML = data[0].typeRecette;	
+	photo.style.backgroundImage = 'url(../api/images/'+data[0].cheminPhoto+')';
+	let personne = "Personne"; 
+	if(data[0].nbPersonne>1){
+		personne+='s'; 
+	}
+	personneTitre.innerHTML = personne; 
+	nbPersonnes.innerHTML = data[0].nbPersonne;
+
+	let diffNum = data[0].difficulte; 
+	let diffText; 
+
+	if(diffNum ==1){
+		diffText = 'Facile'; 
+	}
+	else if(diffNum ==2){
+		diffText = 'Facile'; 
+	}
+	else{
+		diffText='Difficile'; 
 	}	
+	difficulte.innerHTML = diffText;
+	budget.innerHTML = data[0].typeCout;
+	tpsPrepa.innerHTML = data[0].tpsPreparation + ' min';
+	tpsCuisson.innerHTML = data[0].tpsCuisson + ' min';
+	pseudo.innerHTML = data[0].pseudo;
+
+	for (let i=0; i<data.length; i++){
+			let numEtape = document.createElement('h3');
+			let num = i+1; 
+			numEtape.innerHTML = "Etape " + num; 
+			let etape = document.createElement('div');
+			etape.classList.add('etape'); 
+			etape.innerHTML= data[i].description; 
+			etapes.appendChild(numEtape); 
+			etapes.appendChild(etape); 
+	}	
+}
+
+const affichageIngredients = (data) =>{
+	
+	let ingredients = document.getElementById('ingredients'); 
+
+	for (let i=0; i<data.length; i++){
+			let ingredient = document.createElement('div');
+			ingredient.classList.add('ingredient_detail'); 
+			ingredient.innerHTML= data[i].quantite + ' '; 
+			let nomRecette =  data[i].libelle.toLowerCase(); 
+			if(data[i].unite != 'int'){
+				ingredient.innerHTML+= data[i].unite; 
+				if(nomRecette[0]=='a' || nomRecette[0]=='e' || nomRecette[0]=='i' || nomRecette[0]=='o' || nomRecette[0]=='u' || nomRecette[0]=='y' || nomRecette[0]=='h'){
+					ingredient.innerHTML += " d' "; 
+				} 
+				else{
+					ingredient.innerHTML += ' de '; 
+				}
+			}
+			else{
+				if(data[i].quantite>1 &&nomRecette[nomRecette.length-1]!='s'){
+					nomRecette+='s'; 
+				}
+			} 
+			ingredient.innerHTML+= nomRecette ;  
+			ingredients.appendChild(ingredient); 
+	}
+}
+
+const affichageUstensiles = (data) =>{
+	
+	let ustensiles = document.getElementById('ustensiles'); 
+
+	for (let i=0; i<data.length; i++){
+			let ustensile = document.createElement('div');
+			ustensile.classList.add('ustensile_detail'); 
+			ustensile.innerHTML= data[i].libelle;   
+			ustensiles.appendChild(ustensile); 
+	}
 }
 
 document.ready( () => {
@@ -48,23 +108,7 @@ document.ready( () => {
 	var id = urlcourante.split('id=')[1]; 
 	id = decodeURI(id);
 
-	// const espace = /%20/gi;
-	// const circonflexeA = /%C3%A2/gi;
-	// const accentAiguE = /%C3%A9/gi;
-	// const accentGraveE = /%%C3%A8/gi;
-	// const accentGraveA = /%C3%A0/gi;
-	// const CCedille = /%C3%A7/gi;
-	// const accentGraveU = /%C3%B9/gi;
-
-	// id = id.replace(espace," ");
-	// id = id.replace(circonflexeA,"â");
-	// id = id.replace(accentAiguE,"é");
-	// id = id.replace(accentGraveE,"è");
-	// id = id.replace(accentGraveA,"à");
-	// id = id.replace(CCedille,"ç");
-	// id = id.replace(accentGraveU,"ù");
-
-    console.log(id);
+	console.log(id);
 
     let params = {};
 	params.type = "";
@@ -76,8 +120,29 @@ document.ready( () => {
 		method: 'GET'
 	}).then(response => response.json())
 	.then( data => {
-		console.log(data);
-		affichage_etapes(data,1); 
+		console.log('Infos recette', data);
+		affichage_recette(data); 
 	});
+
+	let url_ingredients = new URL("../api/ingredients.php", window.location.href);
+	url_ingredients.search = new URLSearchParams(params);
+	fetch(url_ingredients, {
+		method: 'GET'
+	}).then(response => response.json())
+	.then( data => {
+		console.log('ingredients', data);
+		affichageIngredients(data); 
+	});
+
+	let url_ustensiles = new URL("../api/ustensiles.php", window.location.href);
+	url_ustensiles.search = new URLSearchParams(params);
+	fetch(url_ustensiles, {
+		method: 'GET'
+	}).then(response => response.json())
+	.then( data => {
+		console.log('ustensiles', data);
+		affichageUstensiles(data); 
+	});
+
 });
     

@@ -38,7 +38,9 @@ if ($method == 'get') { //on regarde si la méthode est bien en GET
 //$type = $data['type'];
 //var_dump($data);
 
-$sql = "SELECT projets2_recette.intitule, projets2_type.typeRecette,   projets2_recette.resume,
+$sql = "SELECT projets2_recette.intitule,
+        projets2_recette.nbPersonne, projets2_recette.tpsPreparation, projets2_recette.tpsCuisson, projets2_recette.difficulte,
+        projets2_recette.typeCout, projets2_type.typeRecette, projets2_recette.resume, projets2_recette.pseudo, 
         projets2_recette.typeCout, projets2_etape.description,  projets2_etape.numEtape, projets2_photo.cheminPhoto
 FROM projets2_recette JOIN projets2_type ON projets2_recette.id_type = projets2_type.id_type 
                       JOIN projets2_etape ON projets2_etape.id_recette = projets2_recette.id_recette
