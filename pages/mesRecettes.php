@@ -2,6 +2,7 @@
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/formulaire_ajout.css">
     <link rel="stylesheet" href="../css/styles.css">
     <title>Mes recettes</title>
   </head>

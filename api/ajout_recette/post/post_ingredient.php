@@ -1,6 +1,6 @@
 <?php
 
-include_once "../connexion.php";
+include_once "../../connexion.php";
 header('Content-Type: application/json; charset=UTF-8');
 header('HTTP/1.1 200 OK');
 

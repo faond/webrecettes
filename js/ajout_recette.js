@@ -1,7 +1,6 @@
 //Js pour l'ajout d'une recette
 
-
-const ajoutBtn = document.querySelector(".ajout_recette");
+// Selectors
 const btn_ingredient = document.querySelector(".btn_ingredient");
 const btn_region = document.querySelector(".btn_region");
 const btn_matos = document.querySelector(".btn_matos");
@@ -30,18 +29,14 @@ let formulaire_ajout = document.getElementById("formulaire_ajout");
 let btn_sortir = document.querySelector("btn_sortir");
 let btn_envoi = document.querySelector("btn_envoi");
 let form_ajout = document.querySelector("form_ajout");
-let clic_ajout = 0;
 
 
 
-// Au clic : fait apparaitre le formulaire
-ajoutBtn.addEventListener('click', () => {
-  clic_ajout ++;
-  if(clic_ajout == 1){
-    formulaire_ajout.style.display = "inline-flex";
+// Au chargement : fait apparaitre le formulaire
+document.addEventListener('DOMContentLoaded', (event)=>{
 
-
-    let url_types = new URL("api/ajout_recette/types.php", window.location.href);
+    // Requetes GET dans la bdd pour remplir les listes déroulantes avec les bonnes données
+    let url_types = new URL("../api/ajout_recette/types.php", window.location.href);
   	fetch(url_types, {
   		method: 'GET'
   	}).then( response => response.json() )
@@ -55,7 +50,7 @@ ajoutBtn.addEventListener('click', () => {
 
   			});
 
-      let url_ingredients = new URL("api/ajout_recette/ingredients.php", window.location.href);
+      let url_ingredients = new URL("../api/ajout_recette/ingredients.php", window.location.href);
       fetch(url_ingredients, {
         method: 'GET'
      }).then( response => response.json() )
@@ -69,7 +64,7 @@ ajoutBtn.addEventListener('click', () => {
           });
 
 
-      let url_regions = new URL("api/ajout_recette/regions.php", window.location.href);
+      let url_regions = new URL("../api/ajout_recette/regions.php", window.location.href);
       fetch(url_regions, {
         method: 'GET'
       }).then( response => response.json() )
@@ -82,7 +77,7 @@ ajoutBtn.addEventListener('click', () => {
             listeDeroulante(region_select, regions);
           });
 
-      let url_materiel = new URL("api/ajout_recette/materiel.php", window.location.href);
+      let url_materiel = new URL("../api/ajout_recette/materiel.php", window.location.href);
       fetch(url_materiel, {
         method: 'GET'
       }).then( response => response.json() )
@@ -94,12 +89,6 @@ ajoutBtn.addEventListener('click', () => {
           });
           listeDeroulante(matos_ajout, matos);
          });
-  }
-  else{
-    console.log("deja affiché");
-  }
-
-
 
 });
 
@@ -118,7 +107,7 @@ const listeDeroulante = (parent, tableau) => {
 
 // Pour les ingrédients : change dynamiquement l'unité en fonction de l'ingrédient
 const change_valeur = (select_element) => {
-  let url_ingredients = new URL("api/ajout_recette/ingredients.php", window.location.href);
+  let url_ingredients = new URL("../api/ajout_recette/ingredients.php", window.location.href);
   fetch(url_ingredients, {
     method: 'GET'
  }).then( response => response.json() )
@@ -175,7 +164,7 @@ const ajout_div_bouton = (bouton, nom_class, interieur, parent) =>{
         num_etape++;
         interieur = `<label id ="num_etape" for="recette_ajout">${num_etape}</label>
         <input class="etape_ajout input" type="text" name="etape_ajout" placeholder="Description de l'étape">
-        <img src="api/ajout_recette/moins.png" alt="plus" id="moins_etape" height="15px" width="15px"  onclick="supp_div_etape(this.parentElement, étapes)">`;
+        <img src="../api/ajout_recette/moins.png" alt="plus" id="moins_etape" height="15px" width="15px"  onclick="supp_div_etape(this.parentElement, étapes)">`;
       }
       let nouveau = document.createElement("div");
       nouveau.classList.add(nom_class);
@@ -202,81 +191,33 @@ let interieur_ingredient = `<input class="ingredients_ajout plus_ingredient_nom 
 <select class="unite_ajout" for="recette_ajout">
 <option>int<option>cl<option>g
 </select>
-<img src="api/ajout_recette/moins.png" alt="moins" class="moins_ingredient" height="15px" width="15px"  onclick="supp_div(this.parentElement)">` ;
+<img src="../api/ajout_recette/moins.png" alt="moins" class="moins_ingredient" height="15px" width="15px"  onclick="supp_div(this.parentElement)">` ;
 ajout_div_bouton(btn_ingredient, "ingredients", interieur_ingredient, nouveau_ingredient);
 
 
-// Fonctions qui remettent le formulaire à zero au clic sur "retour"
+
+// Fonctions pour supprimer certaines div et revenir à zero
 
 const retour = () => {
   window.location.reload();
 }
-//
-// const retour = () => {
-//   formulaire_ajout.style.display = "none";
-//   clic_ajout =0;
-//   var class_input = document.getElementsByClassName("input");
-//   for(let i=0 ; i<class_input.length ; i++){
-//     class_input[i].value="";
-//   }
-//   enleve_enfants(type_ajout);
-//   enleve_enfants(region_select);
-//   enleve_enfants(zone_ingredients);
-//   enleve_enfants(zone_matos);
-//   let nouveau = document.createElement("div");
-//   nouveau.classList.add("ingredients");
-//   nouveau.innerHTML = `<select class="ingredients_ajout select_ingredient_nom" type="text" name="ingredients_ajout" onchange="change_valeur(this.parentElement)" >
-//   <input class="qt_ajout select_ingredient_qt input" type="text" name="qt_ajout" placeholder="Quantité">
-//   <label class="unite_ajout" for="ingredients_ajout">int</label>
-//   <img src="api/ajout_recette/moins.png" alt="moins" class="moins_ingredient" height="15px" width="15px" onclick="supp_div(this.parentElement)">`;
-//   zone_ingredients.appendChild(nouveau);
-//
-// }
-//
-//
-//
-// const supp_div = (parent) => {
-//   while (parent.firstChild) {
-//     parent.removeChild(parent.firstChild);
-//   }
-//   parent.remove();
-// }
-//
-// const supp_div_etape = (parent, grandparent) => {
-//   console.log(num_etape);
-//   num_a_supp = parent.firstChild.innerHTML;
-//   if(num_a_supp<=num_etape){
-//     console.log(num_a_supp)
-//     for(let i=num_a_supp ; i<=num_etape ; i++){
-//       grandparent.children[i].firstChild.innerHTML -= 1;
-//     }
-//     num_etape--;
-//   }
-//   supp_div(parent);
-// }
-//
-// // // A FINIR
-// // const retour = () =>{
-// //   formulaire_ajout.style.display = "none";
-// //   clic_ajout =0;
-// //   //for(let i=1 ; i<)
-// //   //while(zone_ingredients.childNodes.length>0){zone_ingredients.removeChild(zone_ingredients.lastChild)};
-// //    while (zone_ingredients.firstChild) {
-// //      zone_ingredients.removeChild(zone_ingredients.firstChild);
-// //    }
-// //    enleve_enfants(type_ajout);
-// //    enleve_enfants(region_select);
-// //    // nb_ajout.value = 1;
-// //    // enleve_enfants(cout_ajout);
-// //    // enleve_enfants(diff_ajout);
-// //
-// //   while (matos_ajout.firstChild) {
-// //     matos_ajout.removeChild(matos_ajout.firstChild);
-// //   }
-// // }
-//
-// const enleve_enfants = (nom_div) =>{
-//   while (nom_div.firstChild) {
-//     nom_div.removeChild(nom_div.firstChild);
-//   }
-// }
+
+const supp_div = (parent) => {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+  parent.remove();
+}
+
+const supp_div_etape = (parent, grandparent) => {
+  console.log(num_etape);
+  num_a_supp = parent.firstChild.innerHTML;
+  if(num_a_supp<=num_etape){
+    console.log(num_a_supp)
+    for(let i=num_a_supp ; i<=num_etape ; i++){
+      grandparent.children[i].firstChild.innerHTML -= 1;
+    }
+    num_etape--;
+  }
+  supp_div(parent);
+}
