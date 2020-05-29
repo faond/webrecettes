@@ -46,6 +46,9 @@ const affichage_recette = (data) => {
 	budget.innerHTML = data[0].typeCout;
 	tpsPrepa.innerHTML = data[0].tpsPreparation + ' min';
 	tpsCuisson.innerHTML = data[0].tpsCuisson + ' min';
+	if(data[0].tpsCuisson ==0){
+		document.querySelector('.tpsCuisson').classList.add('hiden'); 
+	}
 	pseudo.innerHTML = data[0].pseudo;
 
 	for (let i=0; i<data.length; i++){
