@@ -105,7 +105,7 @@ document.ready( () => {
     console.log("Page recette");
     var urlcourante = document.location.href;
     console.log(urlcourante);
-	var id = urlcourante.split('id=')[1]; 
+	var id = urlcourante.split('id=')[1];
 	id = decodeURI(id);
 
 	console.log(id);
@@ -113,7 +113,7 @@ document.ready( () => {
     let params = {};
 	params.type = "";
 	params.nomRecette = id;
-	params.budget = ""; 
+	params.budget = "";
 	let url = new URL("../api/requetes.php", window.location.href);
 	url.search = new URLSearchParams(params);
 	fetch(url, {
@@ -145,4 +145,3 @@ document.ready( () => {
 	});
 
 });
-    

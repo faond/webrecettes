@@ -15,7 +15,16 @@
           <div class="menu_btn">
               <div class="menu_burger"></div>
           </div>
-
+          <nav id="menu" class="styles_menu">
+            <ul>
+              <a id="entree" href="#" class="a_menu"><li>Nos entrées</li></a>
+              <a id="plat" href="#" class="a_menu"><li>Nos plats</li></a>
+              <a id= "dessert" href="#" class="a_menu"><li>Nos desserts</li></a>
+              <a id="boisson" href="#" class="a_menu"><li>Nos boissons</li></a>
+              <a id="mesRecettes" href="pages/mesRecettes.php" class="a_menu"><li>Mes recettes</li></a>
+              <a id="galerieImage" href="pages/galerie.php" class="a_menu"><li>La galerie</li></a>
+            </ul>
+          </nav>
           </div>
         <h1>Recette de Luxe</h1>
         <form class="formulaire">
@@ -54,9 +63,9 @@
       <!-- Début questionnaire -->
       <div id = "questionnaire-header">
 
-       <div id ="formulaire_ajout">
+       <div id ="formulaire_ajout" >
          <h2>Ajoute ta recette !</h2>
-         <form class="form_ajout">
+         <form class="form_ajout" enctype="multipart/form-data">
            <div>
              <label for="nom_ajout">Un p'tit nom pour ta recette : </label>
              <input class="nom_ajout input" type="text" name="nom_ajout" placeholder="Nom de la recette">

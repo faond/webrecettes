@@ -372,6 +372,23 @@ const envoi = async function(){
                   console.log("Requiert posté: ", response);
                 });
             }
+
+            // 
+            // //Ajouter l'image de la recette
+            // let photo = [];
+            // photo['image'] = document.getElementById('uploadImage').value;
+            // photo['id_recette'] = id_recup;
+            // console.log("BONJOUR");
+            // console.log(photo);
+            // await fetch("api/ajout_recette/upload.php", {
+            //   method : 'POST',
+            //   body: JSON.stringify(photo)
+            //   })
+            //   .then( response => response.json() )
+            //   .then( response => {
+            //   console.log("Requiert posté: ", response);
+            // });
+
   window.location.reload()
   }
 

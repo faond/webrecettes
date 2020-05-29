@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
@@ -7,6 +6,7 @@
     <link rel="stylesheet" href="../css/requetes.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <title>Mes recettes</title>
+    <?php include_once '../api/upload.php'; ?>
   </head>
   <body> 
     <h1 id = "titre"></h1>
@@ -57,7 +57,12 @@
           
         </div>
      </div>
+      <div id="section_recette"></div>
+      <h1>Choisis ta recette et ajoute une image</h1>
+      <form class="formulaire_upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" name="envoyer" value="Ajouter mon image">
+      </form>
   </body>
   <script type="text/javascript" src="../js/pageRecette.js"></script>
 </html>
-
