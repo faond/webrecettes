@@ -1,6 +1,6 @@
 <?php
 
-include_once "../connexion.php";
+include_once "../../connexion.php";
 header('Content-Type: application/json; charset=UTF-8');
 header('HTTP/1.1 200 OK');
 
@@ -14,14 +14,14 @@ if ($method == 'post') {
 
 
 
-  $nom = $data;
+  $nom = $data['region'];
 
 
-  $poster_matos= "INSERT INTO projets2_ustensile (libelle) VALUES (:nom)";
+  $poster_region= "INSERT INTO projets2_region (nom) VALUES (:nom)";
 
   $response1[':nom']=$nom;
 
-  $resultats1  = $connexion->prepare($poster_matos);
+  $resultats1  = $connexion->prepare($poster_region);
   $resultats1->execute($response1);
 
   $resultats1->closeCursor();

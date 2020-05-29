@@ -1,6 +1,6 @@
 <?php
 
-include_once "../connexion.php";
+include_once "../../connexion.php";
 header('Content-Type: application/json; charset=UTF-8');
 header('HTTP/1.1 200 OK');
 
@@ -15,15 +15,17 @@ if ($method == 'post') {
 
 
   $recette = $data["id_recette"];
-  $ustensile = $data["id_ustensile"];
+  $ingredient = $data["id_ingredient"];
+  $qt = $data["quantite"];
 
 
-  $poster_requiert= "INSERT INTO projets2_requiert VALUES (:id_recette, :id_ustensile, '1')";
+  $poster_comprend= "INSERT INTO projets2_comprend VALUES (:id_recette, :id_ingredient, :quantite)";
 
   $response1[':id_recette']=$recette;
-  $response1[':id_ustensile']=$ustensile;
+  $response1[':id_ingredient']=$ingredient;
+  $response1[':quantite']=$qt;
 
-  $resultats1  = $connexion->prepare($poster_requiert);
+  $resultats1  = $connexion->prepare($poster_comprend);
   $resultats1->execute($response1);
 
   $resultats1->closeCursor();
