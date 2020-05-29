@@ -2,9 +2,7 @@ body{
     font-family: 'Quicksand', sans-serif;
 }
 
-.hiden{
-    display:None; 
-}
+
 
 #titre{
     font-size: 35px;
@@ -52,3 +50,6 @@ body{
     margin:40px; 
 }
 
+.hiden{
+    display:None; 
+}
