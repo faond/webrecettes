@@ -323,7 +323,7 @@ const envoi = async function(){
                   console.log("Requiert posté: ", response);
                 });
             }
-  //window.location.reload()
+  window.location.reload()
   }
 
 }
