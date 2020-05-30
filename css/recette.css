@@ -2,7 +2,24 @@ body{
     font-family: 'Quicksand', sans-serif;
 }
 
-
+#photos{
+    display:flex;
+    flex-flow:wrap;
+    column-count: 2;
+    justify-content: center;
+}
+#photoRecette{
+    width : 50%;
+    background-size:contain; 
+    /* border-radius: 50px;     */
+    margin-top:5vh; 
+}
+.photoRecette{
+    width : 50%;
+    background-size:contain; 
+    /* border-radius: 50px;     */
+    margin-top:5vh; 
+}
 
 #titre{
     font-size: 35px;
@@ -20,6 +37,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top:5vh;
 }
 
 .titre-detail{
@@ -39,11 +57,24 @@ body{
     display: flex; 
 }
 
+.titre-paragraphe{
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+/* .titre-detail{
+    color:#bdb6b3;
+} */
+
 .materiel{
     width:30%;
     align-content: center;
     margin:40px; 
     margin-right:0;
+}
+
+.numEtape-titre{
+    color:#bdb6b3;
 }
 
 .etapes{
@@ -52,4 +83,50 @@ body{
 
 .hiden{
     display:None; 
+}
+
+.formulaire-ajout-image{
+    background-color: rgb(255, 255, 255);
+    margin: 1vw;
+    border-radius: 25px;
+    display: flex;
+    flex-direction:column; 
+    align-items: center;
+}
+
+#choix-img{
+    font-size:20px; 
+}
+
+.formulaire_upload{
+    display:flex;
+    flex-direction:column;
+}
+
+input{
+    font-family: 'Quicksand', sans-serif;
+    
+}
+
+#input-submit{
+    border-radius:25px;
+    margin-top:20px; 
+    margin-bottom:30px;
+}
+
+#barre-separation{
+    width:2px; 
+    margin-top:40px; 
+    margin-bottom:40px; 
+    background-color:#eeecebad;
+}
+
+#auteur{
+    margin-bottom:5vh; 
+}
+
+#ajoute-ton-image{
+    font-family: 'Quicksand', sans-serif;
+    font-size:15px;
+    font-weight: normal; 
 }

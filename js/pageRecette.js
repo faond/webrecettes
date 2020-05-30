@@ -10,7 +10,8 @@ Document.prototype.ready = callback => {
 const affichage_recette = (data) => {
 	let titre = document.getElementById('titre'); 
 	let type = document.getElementById('type');
-	let photo = document.getElementById('photo'); 
+	// let photo = document.getElementById('photo'); 
+	let photo = document.getElementById('photoRecette'); 
 	let nbPersonnes = document.getElementById('nbPersonnes'); 
 	let personneTitre = document.getElementById('personne-titre');
 	let difficulte = document.getElementById('difficulte'); 
@@ -22,7 +23,24 @@ const affichage_recette = (data) => {
 
 	titre.innerHTML= data[0].intitule; 
 	type.innerHTML = data[0].typeRecette;	
-	photo.style.backgroundImage = 'url(../api/images/'+data[0].cheminPhoto+')';
+	// photo.style.backgroundImage = 'url(../api/images/'+data[0].cheminPhoto+')';
+	photo.src = '../api/images/'+data[0].cheminPhoto;
+	
+
+	
+	let j=1;
+	while(j<data.length){
+		if(data[j].cheminPhoto != data[j-1].cheminPhoto){
+			let image=document.createElement('img');
+			image.src = '../api/images/'+data[j].cheminPhoto;
+			image.classList.add('photoRecette');
+			document.getElementById('photos').appendChild(image); 
+		}
+		
+		j++;
+	}
+
+
 	let personne = "Personne"; 
 	if(data[0].nbPersonne>1){
 		personne+='s'; 
@@ -49,10 +67,12 @@ const affichage_recette = (data) => {
 	if(data[0].tpsCuisson ==0){
 		document.querySelector('.tpsCuisson').classList.add('hiden'); 
 	}
-	pseudo.innerHTML = data[0].pseudo;
+	pseudo.innerHTML += data[0].pseudo;
 
 	for (let i=0; i<data.length; i++){
+		if(data[i].cheminPhoto == data[0].cheminPhoto ){
 			let numEtape = document.createElement('h3');
+			numEtape.classList.add('numEtape-titre');
 			let num = i+1; 
 			numEtape.innerHTML = "Etape " + num; 
 			let etape = document.createElement('div');
@@ -60,6 +80,7 @@ const affichage_recette = (data) => {
 			etape.innerHTML= data[i].description; 
 			etapes.appendChild(numEtape); 
 			etapes.appendChild(etape); 
+		}
 	}	
 }
 
@@ -108,7 +129,7 @@ document.ready( () => {
     console.log("Page recette");
     var urlcourante = document.location.href;
     console.log(urlcourante);
-	var id = urlcourante.split('id=')[1]; 
+	var id = urlcourante.split('id=')[1];
 	id = decodeURI(id);
 
 	console.log(id);
@@ -116,7 +137,7 @@ document.ready( () => {
     let params = {};
 	params.type = "";
 	params.nomRecette = id;
-	params.budget = ""; 
+	params.budget = "";
 	let url = new URL("../api/requetes.php", window.location.href);
 	url.search = new URLSearchParams(params);
 	fetch(url, {
@@ -148,4 +169,3 @@ document.ready( () => {
 	});
 
 });
-    

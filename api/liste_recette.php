@@ -9,7 +9,7 @@ $method=strtolower($_SERVER['REQUEST_METHOD']); //On recupère la méthode
 
 if ($method == 'get') { //on regarde si la méthode est bien en GET
 
-$sql = "SELECT intitule, pseudo, id_recette FROM projets2_recette";
+$sql = "SELECT intitule, pseudo, resume FROM projets2_recette ORDER BY id_recette DESC"; //on affiche dans l'ordre décroissant pour voir les dernières recettes ajoutées
 
 $resultats  = $connexion->query($sql);
 
