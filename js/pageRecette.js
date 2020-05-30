@@ -25,6 +25,21 @@ const affichage_recette = (data) => {
 	type.innerHTML = data[0].typeRecette;	
 	// photo.style.backgroundImage = 'url(../api/images/'+data[0].cheminPhoto+')';
 	photo.src = '../api/images/'+data[0].cheminPhoto;
+	
+
+	
+	let j=1;
+	while(j<data.length){
+		if(data[j].cheminPhoto != data[j-1].cheminPhoto){
+			let image=document.createElement('img');
+			image.src = '../api/images/'+data[j].cheminPhoto;
+			image.classList.add('photoRecette');
+			document.getElementById('photos').appendChild(image); 
+		}
+		
+		j++;
+	}
+
 
 	let personne = "Personne"; 
 	if(data[0].nbPersonne>1){
@@ -52,10 +67,12 @@ const affichage_recette = (data) => {
 	if(data[0].tpsCuisson ==0){
 		document.querySelector('.tpsCuisson').classList.add('hiden'); 
 	}
-	pseudo.innerHTML = data[0].pseudo;
+	pseudo.innerHTML += data[0].pseudo;
 
 	for (let i=0; i<data.length; i++){
+		if(data[i].cheminPhoto == data[0].cheminPhoto ){
 			let numEtape = document.createElement('h3');
+			numEtape.classList.add('numEtape-titre');
 			let num = i+1; 
 			numEtape.innerHTML = "Etape " + num; 
 			let etape = document.createElement('div');
@@ -63,6 +80,7 @@ const affichage_recette = (data) => {
 			etape.innerHTML= data[i].description; 
 			etapes.appendChild(numEtape); 
 			etapes.appendChild(etape); 
+		}
 	}	
 }
 
