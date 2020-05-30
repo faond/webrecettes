@@ -35,13 +35,13 @@ menuEntree.addEventListener('click', () => { //quand on clique sur le menu
         menuBtn.classList.remove('open'); //on ajoute l'animation
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou')
+        slider.classList.remove('flou');
         menuOpen = true;
     } else {
         menuBtn.classList.remove('open');
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou');
+        slider.classList.remove('flou');
         menuOpen = false;
     }
 });
@@ -51,13 +51,13 @@ menuPlat.addEventListener('click', () => { //quand on clique sur le menu
         menuBtn.classList.remove('open'); //on ajoute l'animation
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou')
+        slider.classList.remove('flou');
         menuOpen = true;
     } else {
         menuBtn.classList.remove('open');
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou');
+        slider.classList.remove('flou');
         menuOpen = false;
     }
 });
@@ -67,13 +67,13 @@ menuDessert.addEventListener('click', () => { //quand on clique sur le menu
         menuBtn.classList.remove('open'); //on ajoute l'animation
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou')
+        slider.classList.remove('flou');
         menuOpen = true;
     } else {
         menuBtn.classList.remove('open');
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou');
+        slider.classList.remove('flou');
         menuOpen = false;
     }
 });
@@ -83,13 +83,13 @@ menuBoisson.addEventListener('click', () => { //quand on clique sur le menu
         menuBtn.classList.remove('open'); //on ajoute l'animation
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou')
+        slider.classList.remove('flou');
         menuOpen = true;
     } else {
         menuBtn.classList.remove('open');
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou');
+        slider.classList.remove('flou');
         menuOpen = false;
     }
 });
@@ -99,13 +99,11 @@ menuMesRecettes.addEventListener('click', () => { //quand on clique sur le menu
         menuBtn.classList.remove('open'); //on ajoute l'animation
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou')
         menuOpen = true;
     } else {
         menuBtn.classList.remove('open');
         menuListe.classList.remove('open');
         menuListe.classList.add('fadeOut');
-        mainContainer.classList.remove('flou');
         menuOpen = false;
     }
 });

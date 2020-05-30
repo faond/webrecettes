@@ -11,7 +11,7 @@ if ($method == 'get') {
 
 $type = $_GET['type'];
 
-$sql = "SELECT projets2_photo.cheminPhoto
+$sql = "SELECT projets2_photo.cheminPhoto, projets2_recette.intitule
 FROM projets2_photo JOIN projets2_recette
 ON projets2_recette.id_recette = projets2_photo.id_recette
 WHERE projets2_recette.id_type LIKE :id_type";

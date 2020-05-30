@@ -3,10 +3,9 @@
   include_once 'connexion.php';
 
   /*************************Récupération de l'id grâce au nom de la recette dans l'URL******************************/
-  var_dump($_GET['id']);
   $id = $_GET['id']; // on récupère l'objet id de l'url
 
-  
+
   $sql_id_recette = "SELECT id_recette FROM projets2_recette WHERE intitule = :nom_recette";
   $response[':nom_recette'] = $id;
   $res  = $connexion->prepare($sql_id_recette);

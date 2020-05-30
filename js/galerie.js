@@ -18,13 +18,20 @@ document.ready( () => {
       let div_container = document.querySelector('.galerie_container');
       div_container.innerHTML = "";
 				data.forEach( element => {
+
+					let a = document.createElement('a');
+					a.href = "pageRecette.php?id=" + element.intitule;
+
           let div_image  = document.createElement('div');
           div_image.classList.add('div_image');
+
           let image = document.createElement('img');
           image.classList.add('image_galerie');
           image.src = "../api/images/"+element.cheminPhoto;
           image.alt = element.cheminPhoto;
-          div_image.appendChild(image);
+
+					a.appendChild(image);
+          div_image.appendChild(a);
           div_container.appendChild(div_image);
 				});
 			});
@@ -43,13 +50,21 @@ document.ready( () => {
         let div_container = document.querySelector('.galerie_container');
         div_container.innerHTML = "";
           data.forEach( element => {
+
+						let a = document.createElement('a');
+						a.href = "pageRecette.php?id=" + element.intitule;
+						a.classList.add('a_gal');
+
             let div_image  = document.createElement('div');
             div_image.classList.add('div_image');
+
             let image = document.createElement('img');
             image.classList.add('image_galerie');
             image.src = "../api/images/"+element.cheminPhoto;
             image.alt = element.cheminPhoto;
-            div_image.appendChild(image);
+
+						a.appendChild(image);
+            div_image.appendChild(a);
             div_container.appendChild(div_image);
           });
         });
@@ -70,11 +85,19 @@ document.ready( () => {
             data.forEach( element => {
               let div_image  = document.createElement('div');
               div_image.classList.add('div_image');
+
+							let a = document.createElement('a');
+							a.href = "pageRecette.php?id=" + element.intitule;
+							a.classList.add('a_gal');
+
+
               let image = document.createElement('img');
               image.classList.add('image_galerie');
               image.src = "../api/images/"+element.cheminPhoto;
               image.alt = element.cheminPhoto;
-              div_image.appendChild(image);
+
+							a.appendChild(image);
+              div_image.appendChild(a);
               div_container.appendChild(div_image);
             });
           });
@@ -93,13 +116,19 @@ document.ready( () => {
             let div_container = document.querySelector('.galerie_container');
             div_container.innerHTML = "";
               data.forEach( element => {
+
+								let a = document.createElement('a');
+								a.href = "pageRecette.php?id=" + element.intitule;
+								a.classList.add('a_gal');
                 let div_image  = document.createElement('div');
                 div_image.classList.add('div_image');
                 let image = document.createElement('img');
                 image.classList.add('image_galerie');
                 image.src = "../api/images/"+element.cheminPhoto;
                 image.alt = element.cheminPhoto;
-                div_image.appendChild(image);
+
+								a.appendChild(image);
+                div_image.appendChild(a);
                 div_container.appendChild(div_image);
               });
             });
@@ -118,13 +147,19 @@ document.ready( () => {
               let div_container = document.querySelector('.galerie_container');
               div_container.innerHTML = "";
                 data.forEach( element => {
+
+									let a = document.createElement('a');
+									a.href = "pageRecette.php?id=" + element.intitule;
+									a.classList.add('a_gal');
                   let div_image  = document.createElement('div');
                   div_image.classList.add('div_image');
                   let image = document.createElement('img');
                   image.classList.add('image_galerie');
                   image.src = "../api/images/"+element.cheminPhoto;
                   image.alt = element.cheminPhoto;
-                  div_image.appendChild(image);
+
+									a.appendChild(image);
+                  div_image.appendChild(a);
                   div_container.appendChild(div_image);
                 });
               });
@@ -143,13 +178,20 @@ document.ready( () => {
                 let div_container = document.querySelector('.galerie_container');
                 div_container.innerHTML = "";
                   data.forEach( element => {
+
+										let a = document.createElement('a');
+										a.href = "pageRecette.php?id=" + element.intitule;
+										a.classList.add('a_gal');
+
                     let div_image  = document.createElement('div');
                     div_image.classList.add('div_image');
                     let image = document.createElement('img');
                     image.classList.add('image_galerie');
                     image.src = "../api/images/"+element.cheminPhoto;
                     image.alt = element.cheminPhoto;
-                    div_image.appendChild(image);
+
+										a.appendChild(image);
+                    div_image.appendChild(a);
                     div_container.appendChild(div_image);
                   });
                 });

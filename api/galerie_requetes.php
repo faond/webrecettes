@@ -9,7 +9,10 @@ $method=strtolower($_SERVER['REQUEST_METHOD']); //On recupère la méthode
 
 if ($method == 'get') { //on regarde si la méthode est bien en GET
 
-$sql = "SELECT cheminPhoto FROM projets2_photo";
+$sql = "SELECT projets2_photo.cheminPhoto, projets2_recette.intitule
+FROM projets2_photo
+JOIN projets2_recette
+ON projets2_photo.id_recette = projets2_recette.id_recette";
 
 $resultats = $connexion->query($sql);
 

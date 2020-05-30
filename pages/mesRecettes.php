@@ -6,10 +6,14 @@
     <link rel="stylesheet" href="../css/styles.css">
     <title>Mes recettes</title>
   </head>
-  <body>
-    <h1>Mes recettes</h1>
-    <div id="recipe_container" class="recipe_container"></div>
-    <input id="modifierRecette" type="button" name="modifierRecette" value="Modifier ma recette">
-
+  <body class="body_liste_recettes">
+    <header id="header_liste_recette">
+      <a href="../index.php"><img src="../api/images/icone/back.png" alt="arrow_back"></a>
+    </header>
+    <div class="container_mesRecettes">
+      <h1>Voici vos derniers ajout</h1>
+      <div class="recipe_container"></div>
+    </div>
   </body>
+  <script type="text/javascript" src="../js/liste_recette.js"></script>
 </html>
