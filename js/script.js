@@ -3,40 +3,29 @@ const affichage_etapes = (data, choix = 0) => {
 	div_recette.innerHTML= "";
 	for (let i=0; i<data.length-1; i++){ //J'ai rajouté un -1 pour enlever un message d'erreur. Why ? idk
 
-		if(i==0 || data[i].cheminPhoto != data[i-1].cheminPhoto ){
+		if(i==0 || data[i].intitule != data[i-1].intitule ){
 		let message;
 		let a = document.createElement("a");
-		a.classList.add("div-recette"); 
-		id = data[i].intitule; 
+		a.classList.add("div-recette");
+		id = data[i].intitule;
 		a.href = "pages/pageRecette.php?id=" + id;
-		
-		let image = document.createElement('div'); 
-		image.classList.add("image-recette"); 
+
+		let image = document.createElement('div');
+		image.classList.add("image-recette");
 		image.style.backgroundImage = 'url(api/images/'+data[i].cheminPhoto+')';
 
-		
+
 		message ="<h1 id='titre-recette'>"+data[i].intitule + "</h1><h2 id='type-recette'>"
 			+ data[i].typeRecette + "</h2><h2 id='description-recette'>"+data[i].resume+"</h2><br/>";
-		
-		
-		if(choix ==1){
-			message += " - " + data[i].description + "<br/>";
-		}		
-		i++;
-		
-		while(data[i].numEtape != 1 && i<data.length-1){
-			if(choix == 1){
-				message += " - " + data[i].description + "<br/>";
-			}			
-			i++;
-		}
-		
+
+
+
 		a.innerHTML = message;
-		a.appendChild(image); 
+		a.appendChild(image);
 		div_recette.appendChild(a);
 		}
-		
-	}	
+
+	}
 }
 
 const filtre = (type) => {
@@ -48,10 +37,10 @@ const filtre = (type) => {
 		method: 'GET'
 	}).then( response => response.json() )
 		.then( liste_recettes => {
-			
+
 			let j=0;
 			let noms_corrects = {};
-			
+
 			/*------------ Pour afficher un résultat même si l'utilisateur écrit mal le nom ----------*/
 			nomRecetteApproximatif = nomRecetteApproximatif.toLowerCase();
 			nomRecetteApproximatif = nomRecetteApproximatif.toString().replace(/é|è|ê|ë/gi,"e");
@@ -66,15 +55,15 @@ const filtre = (type) => {
 				elmt_simpl = elmt_simpl.toString().replace(/â|à|ã/gi,"a");
 				elmt_simpl = elmt_simpl.toString().replace(/ù|ü/gi,"u");
 				elmt_simpl = elmt_simpl.toString().replace(/ô/gi,"o");
-				elmt_simpl = elmt_simpl.toString().replace(/ç/gi,"c");	
+				elmt_simpl = elmt_simpl.toString().replace(/ç/gi,"c");
 
-				if(elmt_simpl.indexOf(nomRecetteApproximatif)!=-1){					
+				if(elmt_simpl.indexOf(nomRecetteApproximatif)!=-1){
 				noms_corrects[j]=element['intitule'];
-				j++; 
+				j++;
 				}
 			});
 
-			
+
 			console.log("noms corrects",noms_corrects);
 			let params = {};
 			params.type = type;
@@ -91,11 +80,11 @@ const filtre = (type) => {
 			}).then(response => response.json())
 			.then( data => {
 				console.log("recettes",data);
-				affichage_etapes(data); 
+				affichage_etapes(data);
 		});
-			
+
 	});
-	
+
   }
 
 

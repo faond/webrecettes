@@ -149,7 +149,6 @@
        </form>
        <div class="boutons_fin">
          <input class="btn_envoi button buttonenvoi" type="button" value="Envoyez la recette" onclick="envoi()">
-         <input class="btn_sortir button buttonretour" type="button" value="Retour - Ne pas ajouter de recette" onclick="retour()">
        </div>
 
 

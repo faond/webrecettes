@@ -335,7 +335,7 @@ const envoi = async function(){
                   console.log("Photo posté: ", response);
                 });
 
-                window.location.reload()
+            window.location.reload()
 
   }
 
