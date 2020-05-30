@@ -25,31 +25,31 @@ function test_formulaire_plein(){
 
   //On remplit toutes les informations venant du formulaire dans des tableaux pour préparer les requetes
 
-  var class_ingredient_select = document.getElementsByClassName("select_ingredient_nom");
-  var class_ingredient_plus = document.getElementsByClassName("plus_ingredient_nom");
+  let class_ingredient_select = document.getElementsByClassName("select_ingredient_nom");
+  let class_ingredient_plus = document.getElementsByClassName("plus_ingredient_nom");
   let ingredients_exist =[];
   let ingredients_libelle_nv =[];
   remplir_tableau(ingredients_exist, class_ingredient_select);
   remplir_tableau(ingredients_libelle_nv, class_ingredient_plus);
 
-  var class_qt = document.getElementsByClassName("qt_ajout");
+  let class_qt = document.getElementsByClassName("qt_ajout");
   let ingredients_qt =[];
   remplir_tableau(ingredients_qt, class_qt);
   comprend["quantite"]=ingredients_qt;
 
-  var class_unite = document.getElementsByClassName("unite_ajout");
+  let class_unite = document.getElementsByClassName("unite_ajout");
   let ingredients_unite =[];
   remplir_tableau(ingredients_unite, class_unite);
 
-  var class_matos_exist = document.getElementsByClassName("select_matos");
-  var class_matos_nv = document.getElementsByClassName("plus_matos");
+  let class_matos_exist = document.getElementsByClassName("select_matos");
+  let class_matos_nv = document.getElementsByClassName("plus_matos");
   let materiel_existe =[];
   let materiel_nv =[];
   remplir_tableau(materiel_existe, class_matos_exist);
   remplir_tableau(materiel_nv, class_matos_nv);
 
 
-  var class_etape = document.getElementsByClassName("etape_ajout");
+  let class_etape = document.getElementsByClassName("etape_ajout");
   remplir_tableau(etapes, class_etape);
 
   type_recette["formulaire"] = document.querySelector("#type_ajout").value;
@@ -239,7 +239,11 @@ const envoi = async function(){
 
             //Si ingredients existent : récupérer l'ID des ingredients dans projets2_ingredient
             for(let i=0 ; i<ingredients_recette["formulaire"].length ; i++){
-              let existe = [ingredients_recette["formulaire"][i], ingredients_recette["table"], ingredients_recette["nom"], ingredients_recette["id"], 'exist'];
+              let existe= {};
+              existe["formulaire"] =ingredients_recette["formulaire"][i];
+              existe["table"] = ingredients_recette["table"];
+              existe["nom"] =  ingredients_recette["nom"];
+              existe["id"] =  ingredients_recette["id"];
               await fetch("../api/ajout_recette/recup_id.php", {
                 method : 'POST',
                 body: JSON.stringify(existe)
@@ -266,7 +270,11 @@ const envoi = async function(){
             //Si ustentiles existent : récupérer l'ID des ustentiles dans projets2_ustensile
             for(let i=0 ; i<ustentile_recette["formulaire"].length ; i++){
               //console.log(ustentile_recette["formulaire"][i]);
-              let existe = [ustentile_recette["formulaire"][i], ustentile_recette["table"], ustentile_recette["nom"], ustentile_recette["id"], 'exist'];
+              let existe= {};
+              existe["formulaire"] =ustentile_recette["formulaire"][i];
+              existe["table"] = ustentile_recette["table"];
+              existe["nom"] =  ustentile_recette["nom"];
+              existe["id"] =  ustentile_recette["id"];
               await fetch("../api/ajout_recette/recup_id.php", {
                 method : 'POST',
                 body: JSON.stringify(existe)

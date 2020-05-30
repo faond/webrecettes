@@ -11,18 +11,18 @@ if ($method == 'post') {
   $json = file_get_contents('php://input');
   $data = json_decode($json, TRUE);
 
-  if($data[4]=="exist"){
-    $formulaire = $data[0];
-    $table = $data[1];
-    $nom = $data[2];
-    $id = $data[3];
-  }
-  else{
+ //   if($data[4]=="exist"){
+ //     $formulaire = $data[0];
+ //     $table = $data[1];
+ //     $nom = $data[2];
+ //     $id = $data[3];
+ // }
+  // else{
     $formulaire = $data['formulaire'];
     $table = $data['table'];
     $nom = $data['nom'];
     $id = $data['id'];
-  }
+  //}
 
 
   $recup_id= "SELECT $id FROM $table WHERE $nom = :formulaire";
