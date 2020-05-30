@@ -12,7 +12,8 @@
     <h1 id = "titre"></h1>
     <h2 id = "type"></h2>
     <div id="section_recette">
-      <div id = photo class="image-recette"></div>
+      <!-- <div id = photo class="image-recette"></div> -->
+      <img id="photoRecette">
       <div id = "details">
         <div class = 'nbPersonnes div-details'>
           <h3 id="personne-titre" class = 'titre-detail'></h3>

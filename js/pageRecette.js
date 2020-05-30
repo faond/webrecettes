@@ -10,7 +10,8 @@ Document.prototype.ready = callback => {
 const affichage_recette = (data) => {
 	let titre = document.getElementById('titre'); 
 	let type = document.getElementById('type');
-	let photo = document.getElementById('photo'); 
+	// let photo = document.getElementById('photo'); 
+	let photo = document.getElementById('photoRecette'); 
 	let nbPersonnes = document.getElementById('nbPersonnes'); 
 	let personneTitre = document.getElementById('personne-titre');
 	let difficulte = document.getElementById('difficulte'); 
@@ -22,7 +23,9 @@ const affichage_recette = (data) => {
 
 	titre.innerHTML= data[0].intitule; 
 	type.innerHTML = data[0].typeRecette;	
-	photo.style.backgroundImage = 'url(../api/images/'+data[0].cheminPhoto+')';
+	// photo.style.backgroundImage = 'url(../api/images/'+data[0].cheminPhoto+')';
+	photo.src = '../api/images/'+data[0].cheminPhoto;
+
 	let personne = "Personne"; 
 	if(data[0].nbPersonne>1){
 		personne+='s'; 

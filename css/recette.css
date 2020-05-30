@@ -2,7 +2,10 @@ body{
     font-family: 'Quicksand', sans-serif;
 }
 
-
+#photo{
+    height:50vh;
+    background-size:contain; 
+}
 
 #titre{
     font-size: 35px;
