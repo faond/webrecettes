@@ -33,7 +33,7 @@ let form_ajout = document.querySelector("form_ajout");
 
 
 // Au chargement : fait apparaitre le formulaire
-document.addEventListener('DOMContentLoaded', (event)=>{
+document.addEventListener('DOMContentLoaded', ready=>{
 
     // Requetes GET dans la bdd pour remplir les listes déroulantes avec les bonnes données
     let url_types = new URL("../api/ajout_recette/types.php", window.location.href);
@@ -163,7 +163,7 @@ const ajout_div_bouton = (bouton, nom_class, interieur, parent) =>{
       if(nom_class == "etape"){
         num_etape++;
         interieur = `<label id ="num_etape" for="recette_ajout">${num_etape}</label>
-        <input class="etape_ajout input" type="text" name="etape_ajout" placeholder="Description de l'étape">
+        <textarea rows="1" cols="30" class="etape_ajout input" type="text" name="etape_ajout" placeholder="Description de l'étape"></textarea>
         <img src="../api/ajout_recette/moins.png" alt="plus" id="moins_etape" height="15px" width="15px"  onclick="supp_div_etape(this.parentElement, étapes)">`;
       }
       let nouveau = document.createElement("div");
@@ -176,7 +176,7 @@ const ajout_div_bouton = (bouton, nom_class, interieur, parent) =>{
 
 
 let interieur_matos = `<input class="matos_ajout plus_matos input" type="text" name="matos_ajout" placeholder="Nom ustentile">
-<img src="api/ajout_recette/moins.png" alt="moins" class="moins_matos" height="15px" width="15px" onclick=" supp_div(this.parentElement)">` ;
+<img src="../api/ajout_recette/moins.png" alt="moins" class="moins_matos" height="15px" width="15px" onclick=" supp_div(this.parentElement)">` ;
 ajout_div_bouton(btn_matos, "matos", interieur_matos, div_matos);
 
 let interieur_region = `<input id='region_input' class="region_ajout input" type="text" name="region_ajout" placeholder="Nom région">` ;
@@ -188,7 +188,7 @@ ajout_div_bouton(plus_ingredient, "ingredients", interieur_vide, ingredients_div
 
 let interieur_ingredient = `<input class="ingredients_ajout plus_ingredient_nom input" type="text" name="ingredients_ajout" placeholder="Nom ingrédient">
 <input class="qt_ajout input number" type="text" name="qt_ajout plus_ingredient_qt" placeholder="Quantité">
-<select class="unite_ajout" for="recette_ajout">
+<select class="unite_ajout select" for="recette_ajout">
 <option>int<option>cl<option>g
 </select>
 <img src="../api/ajout_recette/moins.png" alt="moins" class="moins_ingredient" height="15px" width="15px"  onclick="supp_div(this.parentElement)">` ;

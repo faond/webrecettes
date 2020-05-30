@@ -1,12 +1,142 @@
-#formulaire_ajout{
+body{
+  background-color: #eeeceb;
   flex-direction: column;
   justify-content: space-around;
   align-items:center;
   font-family: 'Quicksand', sans-serif;
 }
 
+#unNom{
+  margin-bottom:2em;
+  font-size: 23px;
+}
+
+#region_select{
+  width: 250px;
+}
+
+#bas{
+  display: flex;
+  flex-direction:row;
+}
+
+.zone{
+  margin-bottom: 2em;
+}
+
+.zone2{
+  margin-bottom: 0.8em;
+}
+
+#gauche{
+  margin-top: 1em;
+  width: 43%;
+}
+#droite{
+  margin-top: 1em;
+  width: 43%;
+}
+
+
+#ligne{
+  margin-left:1em;
+  align-items:center;
+  margin-right:1em;
+  width: 1px;
+  background: black;
+}
+
+.button{
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 25px;
+  padding: 3px;
+  background-color: #eeeceb;
+  border-color: #eeeceb;
+}
+
+
+
+.select{
+  border-radius: 20px;
+  border: 2px solid #efefef;
+  padding: 5px;
+  width: 150px;
+  margin-right: 20px;
+}
+
+#titre{
+  font-weight:normal;
+  margin-top: 1em;
+}
+
+
+#formulaire_ajout{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+}
+
 
 .erreur{
   margin:0;
   margin-top: 1em;
+}
+
+
+.input{
+  font-family: 'Arial', sans-serif;
+  border-radius : 25px;
+  padding: 5px;
+  width:inherit;
+  border : 2px solid #efefef;
+}
+
+.form_ajout{
+  background-color: rgb(245, 244, 244);
+  width: 88%;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.boutons_fin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.buttonretour, .buttonenvoi{
+  margin: 1em;
+  padding: 8px;
+}
+
+#header_pageRecette{
+  margin: 1%;
+}
+
+#header_pageRecette img{
+  transform: scale(0.8);
+  transition: 0.3s;
+}
+
+#header_pageRecette img:hover{
+  transform: scale(0.9);
+}
+
+
+
+#centrale{
+  justify-content: space-around;
+  display:flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+  width: 100%;
 }
