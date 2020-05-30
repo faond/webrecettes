@@ -17,7 +17,10 @@ method: 'PUT',
 body: JSON.stringify(params)
   }).then( response => response.json() )
   .then( data => {
-        alert("modification prise en compte, actualisez pour voir les changements");
-        var_dump(data);
+        alert('Intitulé changé');
+        console.log(data);
+        window.location.replace(window.location.href + "?id"+data.intitule);
+        window.location.reload(true);
+
     });
   };
