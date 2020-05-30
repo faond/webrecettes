@@ -323,23 +323,23 @@ const envoi = async function(){
                   console.log("Requiert posté: ", response);
                 });
             }
-  window.location.reload()
+
+            //Poster photo dans projets2_photo
+
+              await fetch("../api/ajout_recette/post/post_photo.php", {
+                method : 'POST',
+                body: JSON.stringify(id_recup)
+              })
+                .then( response => response.json() )
+                .then( response => {
+                  console.log("Photo posté: ", response);
+                });
+
+                window.location.reload()
+
   }
 
 }
-
-
-// const recupererId = async (tableau, stock)=>{
-//    await fetch("../api/ajout_recette/recup_id.php", {
-//     method : 'POST',
-//     body: JSON.stringify(tableau)
-//   })
-//     .then( response => response.json() )
-//     .then( response => {
-//       stock = response[0][0];
-//     });
-// }
-
 
 
 // Rempli les tableaux avec les données trouvées dans les classes
@@ -399,7 +399,7 @@ const verif_info_tabl = (class_nom, dedans) => {
     if(class_nom[dedans].classList[1] == "select_ingredient_nom" || class_nom[dedans].classList[1] == "select_matos"){
       if(compte_occurence(class_nom, class_nom[dedans].value).length > 1){
         for(let l=1 ; l<compte_occurence(class_nom, class_nom[dedans].value).length ; l++){
-          class_nom[compte_occurence(class_nom, class_nom[dedans].value)[l]].style = "color: rgba(166, 113, 255, 0.9)"; // Couleur doublon
+          class_nom[compte_occurence(class_nom, class_nom[dedans].value)[l]].style = "color: rgba(89, 34, 112, 1)"; // Couleur doublon
           erreur.push("doublon");
         }
       }
@@ -410,11 +410,12 @@ const verif_info_tabl = (class_nom, dedans) => {
   }
 }
 
+
 const verif_nombre = (tableau, classname) =>{
   if(tableau.length==undefined){
     if(isNaN(tableau.value)==true){
         console.log("pas un nombre");
-        tableau.style = "color: rgba(255, 113, 66, 0.9)"; // Couleur NaN
+        tableau.style = "color: rgba(138, 44, 92, 0.9)"; // Couleur NaN
         erreur.push("NaN");
         ready=false;
       }
@@ -440,10 +441,10 @@ const affiche_erreur = () => {
 
   }
   if(erreur.includes("doublon")){
-    div_erreur("Certains éléments apparaissent plusieurs fois, merci de les supprimer", "color: rgba(166, 113, 255, 0.9)");
+    div_erreur("Certains éléments apparaissent plusieurs fois, merci de les supprimer", "color: rgba(89, 34, 112, 1)");
   }
   if(erreur.includes("NaN")){
-    div_erreur("Merci de renseigner des nombres", "color: rgba(255, 113, 66, 0.9)");
+    div_erreur("Merci de renseigner des nombres", "color: rgba(138, 44, 92, 0.9)");
   }
 }
 

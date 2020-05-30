@@ -52,7 +52,7 @@
           <input id="bouton_recette"  type="button" name="type_recette" value="Voir les recettes">
           </br></br>
           <label for="recettes" id="questions-form">Ajoute ta recette ! </label>
-          <a href="pages/formulaire.php"><input class="ajout_recette"  id= "plus" type="button" name="ajout_recette" value="+"></a>
+          <a href="pages/formulaire.php"><input class="ajout_recette" id= "plus" type="button" name="ajout_recette" value="+"></a>
         </div>
      </form>
 

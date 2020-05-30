@@ -98,7 +98,7 @@
     </div>
     <div id="section_recette"></div>
     <div class="uploadImage">
-      <h1>T'as fait cette recette ? Alors ajoute ton image</h1>
+      <h1 id="ajoute-ton-image">T'as fait cette recette ? Alors ajoute ton image</h1>
       <form class="formulaire_upload" method="POST" enctype="multipart/form-data">
         <input type="file" name="image">
         <input type="submit" name="envoyer" value="Ajouter mon image">
