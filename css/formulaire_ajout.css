@@ -67,6 +67,7 @@ body{
 #titre{
   font-weight:normal;
   margin-top: 1em;
+  font-family: 'Quicksand', sans-serif;
 }
 
 
@@ -77,6 +78,7 @@ body{
   justify-content: space-around;
   align-items: center;
   background-color: white;
+  font-family: 'Quicksand', sans-serif;
 }
 
 
