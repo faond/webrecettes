@@ -13,8 +13,7 @@ header('HTTP/1.1 200 OK');
 $method=strtolower($_SERVER['REQUEST_METHOD']); //On recupère la méthode
 
 if ($method == 'get') { //on regarde si la méthode est bien en GET
-  // $liste_recettes = $test; 
-  //vu qu'on est en GET de ses morts on récupère les éléments dans l'URL
+  
   $type = $_GET['type'];
   $nomRecette = $_GET['nomRecette'];
   $budget = $_GET['budget'];
@@ -23,20 +22,7 @@ if ($method == 'get') { //on regarde si la méthode est bien en GET
   $resultats_liste  = $connexion->query($requete_liste_recettes);
   //var_dump($resultats_liste);
   //$res_liste = $resultats_liste->fetchAll(PDO::FETCH_ASSOC);
-  $resultats_liste->closeCursor(); //sortir de la connexion*/
-  //$liste_recettes = json_encode($res_liste);
-
- 
-  // strcmp($nomRecette, $resultat[i]);
-// On récupère directement le body
-//$json = file_get_contents('php://input');
-
-// Conversion en un tableau associatif (le TRUE à la fin)
-//$data = json_decode($json, TRUE);
-
-
-//$type = $data['type'];
-//var_dump($data);
+  $resultats_liste->closeCursor(); 
 
 $sql = "SELECT projets2_recette.intitule,
         projets2_recette.nbPersonne, projets2_recette.tpsPreparation, projets2_recette.tpsCuisson, projets2_recette.difficulte,

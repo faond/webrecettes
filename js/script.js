@@ -39,20 +39,15 @@ const affichage_etapes = (data, choix = 0) => {
 	}	
 }
 
-const filtre = (type/*, nomRecette, budget*/) => {
+const filtre = (type) => {
 	event.preventDefault();
 	console.log("Clic");
-	//on créé un objet Javascript
 	let nomRecetteApproximatif = document.getElementById('nomRecette').value;
 	let url1 = new URL("api/liste_recette.php", window.location.href);
 	fetch(url1, {
 		method: 'GET'
 	}).then( response => response.json() )
 		.then( liste_recettes => {
-			// console.log("liste_recettes");
-			// console.log(liste_recettes);
-			// console.log("intitulé");
-			// console.log(liste_recettes[0]['intitule'])
 			
 			let j=0;
 			let noms_corrects = {};
@@ -100,8 +95,6 @@ const filtre = (type/*, nomRecette, budget*/) => {
 		});
 			
 	});
-
-
 	
   }
 

@@ -72,22 +72,15 @@
     <div class="modifierLaRecette">
       <input id="modifierRecette" type="button" name="modifierRecette" value="Modifier ma recette">
       <div class="recipe_selected">
-        <h1>Assaisonne ta recette</h1>
         <form class="formulaire_recette">
           <select id="modification" class="element" name="element">
-            <option value="intitule">Intitulé</option>
-            <option value="resume">Description</option>
-            <option value="nbPersonne">Nombre de personne</option>
-            <option value="tpsPreparation">Temps de préparation</option>
-            <option value="tpsCuisson">Temps de cuisson</option>
-            <option value="difficulte">Difficule</option>
-            <option value="typeCout">Coût</option>
-            <option value="date">Date</option>
+            <option value="intitule" >Intitulé</option>
+            
           </select>
 
           <div id="intitule_container" class="field up">
-            <label for="intitule">Nom de la recette :</label>
-            <input id="intitule" class="button" type="text" name="intitule">
+            <label for="intitule">Nouveau nom de la recette :</label>
+            <input id='intitule' class="button" type="text" name="intitule">
             <input class="bouton_modifier" type="button" name="modfier" value="modifier">
           </div>
 

@@ -22,6 +22,7 @@ body{
 }
 
 #titre{
+    font-family: 'Quicksand', sans-serif;
     font-size: 35px;
     margin-bottom: 0;
     display: flex;
@@ -85,6 +86,7 @@ body{
     display:None; 
 }
 
+
 .formulaire-ajout-image{
     background-color: rgb(255, 255, 255);
     margin: 1vw;
@@ -129,4 +131,8 @@ input{
     font-family: 'Quicksand', sans-serif;
     font-size:15px;
     font-weight: normal; 
+}
+
+#hiden{
+    opacity:0; 
 }
