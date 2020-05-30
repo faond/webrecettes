@@ -2,6 +2,8 @@ const affichage_etapes = (data, choix = 0) => {
 	let div_recette = document.getElementById('section_recette');
 	div_recette.innerHTML= "";
 	for (let i=0; i<data.length-1; i++){ //J'ai rajouté un -1 pour enlever un message d'erreur. Why ? idk
+
+		if(i==0 || data[i].cheminPhoto != data[i-1].cheminPhoto ){
 		let message;
 		let a = document.createElement("a");
 		a.classList.add("div-recette"); 
@@ -21,6 +23,7 @@ const affichage_etapes = (data, choix = 0) => {
 			message += " - " + data[i].description + "<br/>";
 		}		
 		i++;
+		
 		while(data[i].numEtape != 1 && i<data.length-1){
 			if(choix == 1){
 				message += " - " + data[i].description + "<br/>";
@@ -31,6 +34,8 @@ const affichage_etapes = (data, choix = 0) => {
 		a.innerHTML = message;
 		a.appendChild(image); 
 		div_recette.appendChild(a);
+		}
+		
 	}	
 }
 
@@ -74,8 +79,8 @@ const filtre = (type/*, nomRecette, budget*/) => {
 				}
 			});
 
-			console.log("noms corrects");
-			console.log(noms_corrects);
+			
+			console.log("noms corrects",noms_corrects);
 			let params = {};
 			params.type = type;
 			if(document.getElementById('nomRecette').value!=""){
@@ -90,7 +95,7 @@ const filtre = (type/*, nomRecette, budget*/) => {
 				method: 'GET'
 			}).then(response => response.json())
 			.then( data => {
-				console.log(data);
+				console.log("recettes",data);
 				affichage_etapes(data); 
 		});
 			
