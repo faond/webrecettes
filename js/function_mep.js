@@ -4,7 +4,7 @@
 const menuBtn = document.querySelector('.menu_btn'); //on récupère le menu grâce à sa classe
 const menuListe = document.querySelector('.styles_menu');
 let menuOpen = false; //on déclare une variable false qui va nous permettre de faire jouer l'événement
-let mainContainer = document.querySelector('.main_container');
+// let mainContainer = document.querySelector('.main_container');
 let slider = document.querySelector('#slider');
 
 menuBtn.addEventListener('click', () => { //quand on clique sur le menu
@@ -12,13 +12,12 @@ menuBtn.addEventListener('click', () => { //quand on clique sur le menu
         menuBtn.classList.add('open'); //on ajoute l'animation
         menuListe.classList.add('open');
         menuListe.classList.remove('fadeOut');
-        mainContainer.classList.add('flou')
+        slider.classList.add('flou');
         menuOpen = true;
     } else {
         menuBtn.classList.remove('open');
         menuListe.classList.remove('open');
-        mainContainer.classList.remove('flou');
-        slider.classList.remove('color')
+        slider.classList.remove('flou');
         menuOpen = false;
     }
 });
