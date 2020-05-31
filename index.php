@@ -25,7 +25,7 @@
             </ul>
           </nav>
           </div>
-        <h1>Recette de Luxe</h1>
+        <h1>Recettes de Luxe</h1>
         <form class="formulaire">
         <label for="recettes" id="questions-form">Une recette en tête ? : </label>
         <input id="nomRecette" type="text" name="nomRecette" placeholder="Nom d'une recette">
